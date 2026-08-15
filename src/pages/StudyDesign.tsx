@@ -39,40 +39,73 @@ export default function StudyDesign() {
           <div className="narrow prose">
             <p>
               The mTBI Keystone Study is built to answer one question with enough rigor
-              that medicine and policy cannot look away: does the craniocervical
-              junction (CCJ) drive the persistent symptoms of mild traumatic brain
-              injury that standard care has never resolved? Every design decision — the
-              imaging, the arms, the outcome measures — serves that question.
+              that medicine and policy cannot look away: do persistent post-concussive
+              symptoms arise from the brain, from the craniocervical junction, or from
+              both? Every design decision — the imaging, the arms, the outcome measures
+              — serves that question.
             </p>
 
-            <h3>The hypothesis</h3>
+            <h3>Why the neck may hold the answer</h3>
             <p>
-              Persistent mTBI symptoms — headache, cognitive fog, sleep disruption,
-              emotional dysregulation, and dizziness — frequently outlast every
-              conventional treatment because their structural origin is upstream of
-              where care is aimed. The CCJ, where the skull meets the upper cervical
-              spine, governs neurological signaling, blood flow, and cerebrospinal
-              fluid dynamics. The study evaluates whether restoring CCJ alignment
-              changes the trajectory of symptoms that have otherwise been considered
-              permanent.
+              The craniocervical junction is the small, mobile region where the skull
+              meets the top two vertebrae of the spine. It is held together not by bone
+              but by a network of delicate ligaments, and it is built for movement
+              rather than for absorbing extreme force. A blast can transmit forces
+              exceeding 150 times the pull of gravity through the head and neck. The
+              rigid skull protects the brain; the junction beneath it has far less
+              protection, and it is where much of that force is absorbed. When those
+              ligaments stretch or tear, the top vertebrae can shift — and a cascade of
+              consequences follows, each traceable to a specific piece of anatomy.
             </p>
 
-            <h3>Three arms, one comparison</h3>
+            <h3>A drainage problem in the brain</h3>
             <p>
-              The full randomized controlled trial compares craniocervical care against
-              alternative treatment lanes so that any measured improvement can be
-              attributed, not assumed. Each participant receives a comprehensive
-              imaging suite at baseline and at defined intervals, so structural change
-              is measured directly rather than inferred from self-report alone.
+              The jugular veins carry blood and metabolic waste out of the brain, and
+              they run directly past the upper cervical spine. A rotational shift of the
+              top vertebra can pinch a jugular vein against the base of the skull,
+              slowing outflow and allowing pressure and waste to build inside the head.
+              The glymphatic system — the brain’s own waste-clearance network — depends
+              on that same drainage path. This is the most likely source of the brain
+              fog so many veterans describe: not vague or imagined, but a plumbing
+              problem, and plumbing problems can be fixed.
             </p>
 
-            <h3>Who the study is for</h3>
+            <h3>A blood-flow problem and a brainstem under strain</h3>
             <p>
-              The population centers on those most affected by repetitive head trauma —
-              veterans, special operators, and athletes — because they carry both the
-              highest burden of persistent symptoms and the clearest exposure history.
-              Findings are structured for direct handoff to SOCOM, CENTCOM, the VA, and
-              the Department of War.
+              The arteries that feed the back of the brain thread through channels in
+              these same upper vertebrae before turning sharply to enter the skull.
+              Misalignment can put tension on them and reduce oxygen-rich blood flow to
+              the brainstem and cerebellum — the regions that govern balance,
+              coordination, and basic regulation. The brainstem itself sits at this
+              junction, and disruption there affects the nerves that control eye
+              movement, balance, facial sensation, and the body’s stress response. This
+              is why the symptoms cluster the way they do: dizziness, visual
+              instability, headaches, and a nervous system locked in a state of alarm.
+            </p>
+
+            <h3>The connection that matters most</h3>
+            <p>
+              Among the structures affected is the trigeminal nucleus, the brain’s
+              central processor for pain in the head, face, and neck. When the junction
+              is misaligned, it can irritate this center and produce relentless, severe
+              pain. If a meaningful share of the chronic suffering attributed to brain
+              injury actually stems from a correctable structural problem, then
+              identifying it is not an academic exercise — it is a matter of lives.
+            </p>
+
+            <h3>Design: three arms, one definitive comparison</h3>
+            <p>
+              The full randomized controlled trial enrolls 400 veterans across three
+              arms — craniocervical care, brain-focused care, and both in coordinated
+              sequence — so any measured improvement can be attributed, not assumed.
+              Each participant moves through a comprehensive imaging battery (MRI,
+              SPECT, qEEG, and cone beam CT) and objective testing at every stage,
+              producing a detailed map of which specific symptoms trace to direct injury
+              of the brain versus injury to the neck that disrupts the brain. That
+              distinction — drawn from imaging and objective data rather than from
+              stories — is what makes this work unique, and what could reshape how the
+              Department of Defense and Veterans Affairs screen, diagnose, and treat one
+              of the signature injuries of modern service.
             </p>
           </div>
 

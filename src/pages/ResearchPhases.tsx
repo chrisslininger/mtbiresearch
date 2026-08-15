@@ -2,59 +2,30 @@ import { Link } from 'react-router-dom'
 import type { PageMeta } from '@/seo/types'
 import { PageBanner, LastUpdated } from '@/components/blocks'
 import { formatUsd } from '@/lib/utils'
+import { PHASES, FULL_PROGRAM_TOTAL } from '@/content/phases'
+import { faqNode } from '@/seo/schema'
 
 export const meta: PageMeta = {
   path: '/research-phases',
   title: 'Research Phases — mTBI Keystone Research Study',
   description:
-    'The mTBI Keystone Study runs in four funded research phases, from the CCJ pilot study through the full randomized controlled trial to publication and policy change.',
+    'The mTBI study runs in four independently fundable phases: a CCJ feasibility pilot, a two-lane build-out, the full 400-veteran randomized trial, and publication.',
   updatedAt: '2026-08-15',
   priority: 0.9,
   changefreq: 'monthly',
+  schema: [
+    faqNode([
+      {
+        q: 'How is the mTBI study funded and structured?',
+        a: 'As four discrete, independently fundable phases. Phase 1 is a 50-veteran craniocervical feasibility pilot ($384,702); Phase 2 builds the full trial apparatus and runs a 20-veteran two-lane comparison ($2,050,070); Phase 3 is the 400-veteran three-arm randomized controlled trial ($20,069,695); Phase 4 is analytics and multi-journal publication ($1,036,195). The full program totals $23,540,662.',
+      },
+      {
+        q: 'Why phase the study instead of funding one large trial?',
+        a: 'Each phase produces a completable, publishable result that de-risks and scientifically justifies the phase that follows. Funders can anchor to a defined milestone and a known cost rather than a single large commitment, while the scientific integrity of the full 400-participant randomized controlled trial is preserved.',
+      },
+    ]),
+  ],
 }
-
-interface Phase {
-  n: number
-  name: string
-  subtitle: string
-  meta: string
-  goal: number
-  current?: boolean
-}
-
-// Editorial phase content, mirroring the funded research phases. Amounts match
-// the study's phase budgets. (Provisional figures — confirm before launch.)
-const PHASES: Phase[] = [
-  {
-    n: 1,
-    name: 'CCJ Pilot Study',
-    subtitle: 'Proving the Signal',
-    meta: '50 veterans · single-arm craniocervical care · six months',
-    goal: 384_702,
-    current: true,
-  },
-  {
-    n: 2,
-    name: 'Prep & Preliminary Outcomes',
-    subtitle: 'Building the Research Machine and Comparing Results',
-    meta: '20 veterans · two treatment lanes · full imaging suite · six months',
-    goal: 2_050_070,
-  },
-  {
-    n: 3,
-    name: 'The Full Randomized Controlled Trial',
-    subtitle: 'Measuring What Really Drives Root-Cause Recovery',
-    meta: '380 additional veterans (400 total) · three arms · eighteen months',
-    goal: 20_069_695,
-  },
-  {
-    n: 4,
-    name: 'Analytics & Publication',
-    subtitle: 'Turning Evidence into Change',
-    meta: 'final analysis and multi-journal dissemination · six months',
-    goal: 1_036_195,
-  },
-]
 
 export default function ResearchPhases() {
   return (
@@ -68,23 +39,92 @@ export default function ResearchPhases() {
       <section className="section">
         <div className="container">
           <p className="narrow center prose">
-            This study does not end with data collection. It ends with policy change.
-            Each phase is independently scoped and funded, so the science can begin now
-            and scale as the coalition grows. We are currently in Phase 1.
+            The mTBI Research Study is structured as a sequence of discrete,
+            independently fundable phases. Each phase produces a completable,
+            publishable result that de-risks and scientifically justifies the phase
+            that follows — letting funders anchor to a defined milestone and a known
+            cost rather than a single large commitment, while preserving the scientific
+            integrity of the full 400-participant randomized controlled trial the
+            program builds toward. We are currently in Phase 1.
           </p>
 
-          <div className="mt-l">
+          <div className="narrow mt-l">
             {PHASES.map((p) => (
-              <div className="tier" key={p.n}>
-                <h4>
-                  Phase {p.n}: {p.name}
-                  {p.current ? ' — Current' : ''}
-                </h4>
-                <p style={{ marginBottom: '6px' }}>{p.subtitle}</p>
-                <p style={{ marginBottom: '6px' }}>{p.meta}</p>
-                <p className="amt">Phase goal: {formatUsd(p.goal)}</p>
-              </div>
+              <article
+                key={p.number}
+                className={`phase-article${p.current ? ' is-current' : ''}`}
+                aria-labelledby={`phase-${p.number}`}
+              >
+                <p className="kicker">Phase {p.number}</p>
+                <h2 className="p-name" id={`phase-${p.number}`}>
+                  {p.name}
+                </h2>
+                <p className="p-sub">{p.subtitle}</p>
+                <p className="p-meta">{p.meta}</p>
+
+                <dl className="specs">
+                  {p.specs.map((s) => (
+                    <div className="spec" key={s.label}>
+                      <dt>{s.label}</dt>
+                      <dd>{s.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+
+                {p.body.map((para, i) => (
+                  <p key={i}>{para}</p>
+                ))}
+
+                <div className="p-delivers">
+                  <h4>{p.deliversHeading}</h4>
+                  <p>{p.delivers}</p>
+                </div>
+
+                <p className="p-covers">
+                  <strong>Your support here covers</strong>
+                  {p.covers}
+                </p>
+
+                <p className="p-goal">
+                  Phase {p.number} total investment: {formatUsd(p.goal)}
+                </p>
+              </article>
             ))}
+          </div>
+
+          {/* Full program view */}
+          <div className="narrow">
+            <h2 className="display-sm" style={{ marginBottom: '10px' }}>
+              The Full Arc of the Work
+            </h2>
+            <p className="prose">
+              Taken together, the four phases represent the same complete body of work a
+              single large trial would require — staged so that each step stands on its
+              own, produces a real result, and makes the next more certain. A supporter
+              may enter at any point along this path.
+            </p>
+            <table className="program-table">
+              <thead>
+                <tr>
+                  <th>Phase</th>
+                  <th>Scope</th>
+                  <th className="num">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {PHASES.map((p) => (
+                  <tr key={p.number}>
+                    <td>Phase {p.number}</td>
+                    <td>{p.name}</td>
+                    <td className="num">{formatUsd(p.goal)}</td>
+                  </tr>
+                ))}
+                <tr className="total">
+                  <td colSpan={2}>Full Program (Phases 1–4)</td>
+                  <td className="num">{formatUsd(FULL_PROGRAM_TOTAL)}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div className="center mt-l">
