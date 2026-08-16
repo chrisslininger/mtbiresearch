@@ -1,7 +1,12 @@
 /**
- * The four funded research phases — the single source of truth for the Research
- * Phases page and any phase reference elsewhere. Figures are the working budget
- * totals from the study's phased rollout (subject to final confirmation).
+ * The four funded research phases — single source of truth for the Research
+ * Phases overview cards, the individual phase pages, the homepage cards, and
+ * the milestone stepper. Figures are the working budget totals (subject to
+ * final confirmation).
+ *
+ * costPerParticipant + participantTarget drive the "lives covered" impact
+ * counter. They are PROVISIONAL (direct-care cost per participant from the
+ * phase budgets) — confirm the exact figures before launch.
  */
 
 export interface PhaseSpec {
@@ -12,20 +17,27 @@ export interface PhaseSpec {
 export interface Phase {
   number: number
   slug: string
+  /** Full route to the phase's detail page. */
+  path: string
   name: string
   subtitle: string
   meta: string
   goal: number
   current: boolean
-  /** "At a glance" fact rows. */
+  /** Short name for the milestone stepper. */
+  stepperName: string
+  /** Card thumbnail image. */
+  image: string
+  /** Short description for the card. */
+  cardDesc: string
+  /** Direct-care cost to carry one participant through this phase (provisional). */
+  costPerParticipant: number | null
+  /** Target number of participants this phase treats. */
+  participantTarget: number | null
   specs: PhaseSpec[]
-  /** Narrative paragraphs. */
   body: string[]
-  /** Heading for the outcome block. */
   deliversHeading: string
-  /** The outcome statement. */
   delivers: string
-  /** What a contribution to this phase funds. */
   covers: string
 }
 
@@ -35,11 +47,18 @@ export const PHASES: Phase[] = [
   {
     number: 1,
     slug: 'ccj-feasibility-pilot',
-    name: 'CCJ Feasibility Pilot',
+    path: '/research-phases/ccj-feasibility-pilot',
+    name: 'CCJ Pilot Study',
     subtitle: 'Proving the Signal',
     meta: '50 veterans · single-arm craniocervical care · six months',
     goal: 384_702,
     current: true,
+    stepperName: 'CCJ Pilot Study',
+    image: '/images/phases/phase-1.jpg',
+    cardDesc:
+      'Fifty veterans, precise upper-cervical care, and the first published evidence that the craniocervical model works.',
+    costPerParticipant: 3_000,
+    participantTarget: 50,
     specs: [
       { label: 'Participants', value: '50 (40 funded, 10 in-kind)' },
       { label: 'Design', value: 'Single-arm, open-label' },
@@ -61,11 +80,18 @@ export const PHASES: Phase[] = [
   {
     number: 2,
     slug: 'prep-preliminary-outcomes',
+    path: '/research-phases/prep-preliminary-outcomes',
     name: 'Prep & Preliminary Outcomes',
-    subtitle: 'Building the Research Machine and Comparing Results',
+    subtitle: 'Building the Research Machine',
     meta: '20 veterans · two treatment lanes · full imaging suite · six months',
     goal: 2_050_070,
     current: false,
+    stepperName: 'Prep & Preliminary Outcomes',
+    image: '/images/phases/phase-2.jpg',
+    cardDesc:
+      "Twenty veterans across two treatment lanes while we build and prove the full trial's operational machine.",
+    costPerParticipant: 10_950,
+    participantTarget: 20,
     specs: [
       { label: 'Participants', value: '20 (10 CCJ + 10 Brain)' },
       { label: 'Design', value: 'Two-lane feasibility' },
@@ -87,11 +113,18 @@ export const PHASES: Phase[] = [
   {
     number: 3,
     slug: 'full-randomized-controlled-trial',
+    path: '/research-phases/full-randomized-controlled-trial',
     name: 'The Full Randomized Controlled Trial',
-    subtitle: 'Measuring What Really Drives Root-Cause Recovery',
+    subtitle: 'Measuring What Drives Recovery',
     meta: '380 additional veterans (400 total) · three arms · eighteen months',
     goal: 20_069_695,
     current: false,
+    stepperName: 'The Full RCT',
+    image: '/images/phases/phase-3.jpg',
+    cardDesc:
+      '380 more veterans, 400 in total, randomized across three arms — the definitive trial.',
+    costPerParticipant: 14_581,
+    participantTarget: 380,
     specs: [
       { label: 'Participants', value: '380 (400 total)' },
       { label: 'Design', value: 'Three-arm RCT, 1:1:1' },
@@ -113,11 +146,18 @@ export const PHASES: Phase[] = [
   {
     number: 4,
     slug: 'analytics-publication',
+    path: '/research-phases/analytics-publication',
     name: 'Analytics & Publication',
     subtitle: 'Turning Evidence into Change',
     meta: 'final analysis and multi-journal dissemination · six months',
     goal: 1_036_195,
     current: false,
+    stepperName: 'Analytics & Publication',
+    image: '/images/phases/phase-4.jpg',
+    cardDesc:
+      'Final analysis and multi-journal publication that carries the findings into DoD and VA policy.',
+    costPerParticipant: null,
+    participantTarget: null,
     specs: [
       { label: 'Duration', value: '6 months' },
       { label: 'Focus', value: 'Analysis & dissemination' },
@@ -136,3 +176,7 @@ export const PHASES: Phase[] = [
       'The analytical team and the dedicated biostatistician who bring rigor to the final findings, the reserve for publication across multiple respected journals, the data and analytics support required to complete the work, and the travel to present and disseminate the results where they can drive real change.',
   },
 ]
+
+export function phaseBySlug(slug: string): Phase | undefined {
+  return PHASES.find((p) => p.slug === slug)
+}

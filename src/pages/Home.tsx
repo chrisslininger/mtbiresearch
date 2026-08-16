@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import type { PageMeta } from '@/seo/types'
-import { FundingBar } from '@/components/FundingBar'
+import { PhaseCards } from '@/components/PhaseCards'
+import { MilestoneStepper } from '@/components/MilestoneStepper'
 import { medicalStudyNode, faqNode } from '@/seo/schema'
 
 export const meta: PageMeta = {
@@ -137,78 +138,45 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Six Phases */}
+      {/* Four Phases */}
       <section className="section">
         <div className="container">
           <div className="sh">
-            <p className="eyebrow">Six Phases. One Mission.</p>
+            <p className="eyebrow">A Four-Phase Path</p>
             <h2 className="display">Where We Are</h2>
           </div>
           <p className="narrow center prose">
             This study does not end with data collection. It ends with policy change —
-            and there are six phases between here and there that will take place over
-            the next 2 years. We are currently in Phase 1, building the financial
-            foundation and the coalition of support that makes every phase that follows
-            possible.
+            and it gets there in four funded research phases. Each one is a complete,
+            publishable body of work that de-risks the next. We are currently in Phase
+            1. Explore each phase to see its goal, its impact, and where the funding
+            stands today.
           </p>
-          <div className="phase-track mt-l">
-            <div className="phase-box active">
-              <div className="pn">1</div>
-              <div className="pl">Fundraising &amp; Awareness</div>
-              <div className="desc">
-                Building the foundation. Rallying the coalition. Raising the resources
-                to do this right.
-              </div>
-            </div>
-            <div className="phase-box">
-              <div className="pn">2</div>
-              <div className="pl">Enroll First Participants &amp; Finish Funding</div>
-            </div>
-            <div className="phase-box">
-              <div className="pn">3</div>
-              <div className="pl">Start Baseline Assessments</div>
-            </div>
-            <div className="phase-box">
-              <div className="pn">4</div>
-              <div className="pl">Treatment Interventions Underway</div>
-            </div>
-            <div className="phase-box">
-              <div className="pn">5</div>
-              <div className="pl">Data Collection &amp; Analysis</div>
-            </div>
-            <div className="phase-box">
-              <div className="pn">6</div>
-              <div className="pl">Publication &amp; Sharing</div>
-            </div>
+          <div className="mt-l">
+            <PhaseCards />
           </div>
           <div className="center mt-l">
             <Link to="/research-phases" className="btn">
-              Learn More About the Phases
+              See All Research Phases
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Funding */}
+      {/* Funding — milestone stepper */}
       <section className="section-dark section">
         <div className="container">
           <div className="sh">
             <p className="eyebrow">Every Dollar Moves This Forward</p>
-            <h2 className="display">Funding Progress</h2>
+            <h2 className="display">Fund the Work, One Phase at a Time</h2>
           </div>
           <p className="narrow center">
-            We are actively raising the $20,000,000 needed to execute this study at the
-            level of scientific rigor that will make its findings impossible for
-            medicine and policy to ignore. This funding will cover comprehensive
-            diagnostic imaging for 400 participants, direct veteran and athlete
-            treatment across all three study arms, and the full research infrastructure
-            required to reach SOCOM, CENTCOM, and the VA.
+            The full program is $23.5 million, staged across four phases. You can stand
+            behind the phase we're funding now, or commit early to the ones ahead.
+            Click any phase to see exactly where it stands.
           </p>
-          <FundingBar />
-          <div className="center mt-m">
-            <Link to="/support/financial-contribution" className="btn">
-              Invest in the Mission
-            </Link>
+          <div className="mt-l">
+            <MilestoneStepper />
           </div>
         </div>
       </section>

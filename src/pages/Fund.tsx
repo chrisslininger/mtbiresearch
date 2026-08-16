@@ -1,6 +1,6 @@
 import type { PageMeta } from '@/seo/types'
 import { PageBanner, SectionHeading } from '@/components/blocks'
-import { FundingBar } from '@/components/FundingBar'
+import { MilestoneStepper } from '@/components/MilestoneStepper'
 import { InquiryForm } from '@/components/InquiryForm'
 import { faqNode } from '@/seo/schema'
 
@@ -38,12 +38,18 @@ export default function Fund() {
 
       <section className="section-dark section">
         <div className="container">
+          <div className="sh">
+            <p className="eyebrow">Every Dollar Moves This Forward</p>
+            <h2 className="display">Fund the Work, One Phase at a Time</h2>
+          </div>
           <p className="narrow center">
-            We are raising $20,000,000 to execute this study at the level of scientific
-            rigor that makes its findings impossible to ignore. Here is where the
-            funding stands today.
+            The full program is $23.5 million, staged across four phases so each stands
+            on its own. Choose the phase we're funding now, or commit early to the ones
+            ahead — click any phase to see exactly where it stands.
           </p>
-          <FundingBar />
+          <div className="mt-l">
+            <MilestoneStepper />
+          </div>
         </div>
       </section>
 

@@ -5,10 +5,12 @@
  */
 import type { ComponentType } from 'react'
 import type { PageMeta } from '@/seo/types'
+import { PHASES } from '@/content/phases'
 
 import Home, { meta as homeMeta } from '@/pages/Home'
 import StudyDesign, { meta as studyDesignMeta } from '@/pages/StudyDesign'
 import ResearchPhases, { meta as researchPhasesMeta } from '@/pages/ResearchPhases'
+import PhaseDetail from '@/pages/PhaseDetail'
 import SupportingResearch, { meta as supportingResearchMeta } from '@/pages/SupportingResearch'
 import ResearchTeam, { meta as researchTeamMeta } from '@/pages/ResearchTeam'
 import Fund, { meta as fundMeta } from '@/pages/Fund'
@@ -29,10 +31,26 @@ export interface RouteEntry {
   prerender: boolean
 }
 
+const phaseRoutes: RouteEntry[] = PHASES.map((p) => ({
+  path: p.path,
+  Component: PhaseDetail,
+  prerender: true,
+  meta: {
+    path: p.path,
+    title: `Phase ${p.number}: ${p.name} — mTBI Research`,
+    description: `${p.subtitle}. ${p.cardDesc} Phase goal ${p.goal.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })}.`,
+    updatedAt: '2026-08-15',
+    priority: p.current ? 0.9 : 0.7,
+    changefreq: 'weekly',
+    ogImage: p.image,
+  },
+}))
+
 export const routes: RouteEntry[] = [
   { path: '/', Component: Home, meta: homeMeta, prerender: true },
   { path: '/study-design', Component: StudyDesign, meta: studyDesignMeta, prerender: true },
   { path: '/research-phases', Component: ResearchPhases, meta: researchPhasesMeta, prerender: true },
+  ...phaseRoutes,
   { path: '/supporting-research', Component: SupportingResearch, meta: supportingResearchMeta, prerender: true },
   { path: '/research-team', Component: ResearchTeam, meta: researchTeamMeta, prerender: true },
   { path: '/support/financial-contribution', Component: Fund, meta: fundMeta, prerender: true },

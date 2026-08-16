@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import type { PageMeta } from '@/seo/types'
 import { PageBanner, LastUpdated } from '@/components/blocks'
+import { PhaseCards } from '@/components/PhaseCards'
 import { formatUsd } from '@/lib/utils'
 import { PHASES, FULL_PROGRAM_TOTAL } from '@/content/phases'
 import { faqNode } from '@/seo/schema'
@@ -43,96 +44,52 @@ export default function ResearchPhases() {
             independently fundable phases. Each phase produces a completable,
             publishable result that de-risks and scientifically justifies the phase
             that follows — letting funders anchor to a defined milestone and a known
-            cost rather than a single large commitment, while preserving the scientific
-            integrity of the full 400-participant randomized controlled trial the
-            program builds toward. We are currently in Phase 1.
+            cost rather than a single large commitment. Click any phase to see its
+            full detail, budget, and funding progress. We are currently in Phase 1.
           </p>
 
-          <div className="narrow mt-l">
-            {PHASES.map((p) => (
-              <article
-                key={p.number}
-                className={`phase-article${p.current ? ' is-current' : ''}`}
-                aria-labelledby={`phase-${p.number}`}
-              >
-                <p className="kicker">Phase {p.number}</p>
-                <h2 className="p-name" id={`phase-${p.number}`}>
-                  {p.name}
-                </h2>
-                <p className="p-sub">{p.subtitle}</p>
-                <p className="p-meta">{p.meta}</p>
-
-                <dl className="specs">
-                  {p.specs.map((s) => (
-                    <div className="spec" key={s.label}>
-                      <dt>{s.label}</dt>
-                      <dd>{s.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-
-                {p.body.map((para, i) => (
-                  <p key={i}>{para}</p>
-                ))}
-
-                <div className="p-delivers">
-                  <h4>{p.deliversHeading}</h4>
-                  <p>{p.delivers}</p>
-                </div>
-
-                <p className="p-covers">
-                  <strong>Your support here covers</strong>
-                  {p.covers}
-                </p>
-
-                <p className="p-goal">
-                  Phase {p.number} total investment: {formatUsd(p.goal)}
-                </p>
-              </article>
-            ))}
+          <div className="mt-l">
+            <PhaseCards />
           </div>
+        </div>
+      </section>
 
-          {/* Full program view */}
-          <div className="narrow">
-            <h2 className="display-sm" style={{ marginBottom: '10px' }}>
-              The Full Arc of the Work
-            </h2>
-            <p className="prose">
-              Taken together, the four phases represent the same complete body of work a
-              single large trial would require — staged so that each step stands on its
-              own, produces a real result, and makes the next more certain. A supporter
-              may enter at any point along this path.
-            </p>
-            <table className="program-table">
-              <thead>
-                <tr>
-                  <th>Phase</th>
-                  <th>Scope</th>
-                  <th className="num">Total</th>
+      <section className="section-light section">
+        <div className="container narrow">
+          <h2 className="display-sm" style={{ marginBottom: '10px' }}>
+            The Full Arc of the Work
+          </h2>
+          <p className="prose">
+            Taken together, the four phases represent the same complete body of work a
+            single large trial would require — staged so that each step stands on its
+            own, produces a real result, and makes the next more certain. A supporter
+            may enter at any point along this path.
+          </p>
+          <table className="program-table">
+            <thead>
+              <tr>
+                <th>Phase</th>
+                <th>Scope</th>
+                <th className="num">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {PHASES.map((p) => (
+                <tr key={p.number}>
+                  <td>
+                    <Link to={p.path}>Phase {p.number}</Link>
+                  </td>
+                  <td>{p.name}</td>
+                  <td className="num">{formatUsd(p.goal)}</td>
                 </tr>
-              </thead>
-              <tbody>
-                {PHASES.map((p) => (
-                  <tr key={p.number}>
-                    <td>Phase {p.number}</td>
-                    <td>{p.name}</td>
-                    <td className="num">{formatUsd(p.goal)}</td>
-                  </tr>
-                ))}
-                <tr className="total">
-                  <td colSpan={2}>Full Program (Phases 1–4)</td>
-                  <td className="num">{formatUsd(FULL_PROGRAM_TOTAL)}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
+              ))}
+              <tr className="total">
+                <td colSpan={2}>Full Program (Phases 1–4)</td>
+                <td className="num">{formatUsd(FULL_PROGRAM_TOTAL)}</td>
+              </tr>
+            </tbody>
+          </table>
           <div className="center mt-l">
-            <Link to="/support/financial-contribution" className="btn">
-              Fund the Current Phase
-            </Link>
-          </div>
-          <div className="center mt-m">
             <LastUpdated date="2026-08-15" />
           </div>
         </div>
