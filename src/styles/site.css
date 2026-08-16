@@ -19,6 +19,8 @@
 .section-bronze { background: var(--bronze); color: var(--white); }
 .section-bronze h1, .section-bronze h2, .section-bronze h3 { color: var(--white); }
 .section-light { background: var(--light); }
+.band-mission { background: var(--bronze); color: var(--white); padding: 46px 0; }
+.band-mission .lead { font-size: 17.5px; line-height: 1.55; }
 .center { text-align: center; }
 .narrow { max-width: var(--container-narrow); margin-left: auto; margin-right: auto; }
 
@@ -68,12 +70,15 @@
 
 /* ---------- Header ---------- */
 .site-header { position: sticky; top: 0; z-index: 50; background: var(--charcoal); border-bottom: 1px solid oklch(1 0 0 / .06); }
-.site-header .bar { height: var(--header-h); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.brand { display: flex; align-items: center; gap: 12px; flex: none; }
-.brand-logo { height: 42px; width: auto; display: block; }
-@media (max-width: 1120px) { .brand-logo { height: 38px; } }
+.site-header .bar { height: var(--header-h); display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-left: 14px; padding-right: 20px; }
+.brand { display: flex; align-items: center; gap: 12px; flex: none; margin-right: auto; }
+.brand-logo { height: 60px; width: auto; display: block; }
+@media (max-width: 1120px) { .brand-logo { height: 52px; } }
 .nav { display: flex; align-items: center; gap: 20px; white-space: nowrap; }
 .nav-item { position: relative; }
+/* Invisible hover bridge across the gap so the dropdown doesn't close when the
+   cursor travels from the menu item down to the submenu. */
+.nav-item::after { content: ""; position: absolute; left: -14px; right: -14px; top: 100%; height: 20px; }
 .nav-link {
   font-family: var(--font-serif); text-transform: uppercase; letter-spacing: .03em;
   font-size: 12.5px; color: oklch(0.93 0.004 253); font-weight: 500; padding: 8px 0;
@@ -95,8 +100,8 @@
 }
 .nav-item:hover .dropdown, .nav-item:focus-within .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
 .dropdown a {
-  display: block; font-family: var(--font-sans); text-transform: uppercase; letter-spacing: .06em;
-  font-size: 13px; font-weight: 600; color: var(--ink); padding: 12px 16px; border-radius: var(--radius-sm);
+  display: block; font-family: var(--font-serif); text-transform: uppercase; letter-spacing: .03em;
+  font-size: 13px; font-weight: 500; color: var(--ink); padding: 12px 16px; border-radius: var(--radius-sm);
 }
 .dropdown a:hover { background: var(--light); color: var(--bronze-dark); }
 .header-mail { color: oklch(0.93 0.004 253); font-size: 18px; }
@@ -117,7 +122,7 @@
 
 /* ---------- Hero ---------- */
 .hero {
-  position: relative; min-height: 660px; display: flex; align-items: center; justify-content: center;
+  position: relative; min-height: 760px; display: flex; align-items: center; justify-content: center;
   text-align: center; color: var(--white); background-color: var(--hero-bg);
   background-image:
     radial-gradient(ellipse 72% 82% at 50% 46%, oklch(0.20 0.009 255 / .72) 0%, oklch(0.20 0.009 255 / .18) 52%, oklch(0.20 0.009 255 / .08) 100%),
@@ -127,12 +132,12 @@
 .hero .hero-inner { position: relative; z-index: 2; padding: 90px 20px; }
 .hero-title {
   font-family: var(--font-display); font-weight: 400; letter-spacing: .06em;
-  font-size: clamp(40px, 7vw, 92px); line-height: 1.02; color: var(--white); margin: 0;
+  font-size: clamp(52px, 9vw, 120px); line-height: 1.0; color: var(--white); margin: 0;
   text-shadow: 0 3px 30px oklch(0 0 0 / .6);
 }
 .hero-sub {
-  display: inline-block; margin: 26px 0 34px; padding: 12px 30px; border: 1.5px solid oklch(1 0 0 / .55);
-  font-family: var(--font-display); letter-spacing: .18em; font-size: clamp(16px, 2.4vw, 30px); color: var(--white);
+  display: inline-block; margin: 30px 0 38px; padding: 13px 34px; border: 1.5px solid oklch(1 0 0 / .55);
+  font-family: var(--font-display); letter-spacing: .18em; font-size: clamp(18px, 2.8vw, 34px); color: var(--white);
 }
 
 /* ---------- Page banner (inner pages) ---------- */

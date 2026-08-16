@@ -52,10 +52,10 @@ export default function Home() {
       </section>
 
       {/* Mission band */}
-      <section className="section-bronze section">
+      <section className="section-bronze band-mission">
         <div className="container narrow center">
           <h2 className="display-sm">Making the Invisible Wounds Visible</h2>
-          <p className="lead" style={{ marginTop: '22px' }}>
+          <p className="lead" style={{ marginTop: '18px' }}>
             This is sixteen years of foundational science arriving at its moment of
             proof. We have traced the persistent, debilitating symptoms of mild
             traumatic brain injury back to their structural roots — and we are now
