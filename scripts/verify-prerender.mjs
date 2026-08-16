@@ -15,7 +15,7 @@ const MIN_TEXT_LENGTH = 300
 const failures = []
 
 function textInsideRoot(html) {
-  const match = html.match(/<div id="root">([\s\S]*?)<\/div>\s*<script/)
+  const match = html.match(/<div id="root">([\s\S]*)<\/div>/)
   if (!match) return ''
   return match[1]
     .replace(/<script[\s\S]*?<\/script>/g, ' ')
