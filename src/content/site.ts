@@ -56,6 +56,7 @@ export const NAV: NavItem[] = [
       { label: 'Organizational Support', href: '/support/organizational-support' },
     ],
   },
+  { label: 'Events', href: '/events' },
   { label: 'Media', href: '/media' },
   { label: 'Refer a Participant', href: '/refer' },
   { label: 'Contact Us', href: '/contact' },

@@ -117,6 +117,45 @@ export function medicalStudyNode(): JsonLdNode {
   }
 }
 
+/** Build a schema.org/Event node for an individual event page. */
+export function eventNode(event: import('@/content/events').EventItem): JsonLdNode {
+  const url = absoluteUrl(event.path)
+  // venueCityLine is "Tampa, FL 33611"
+  const [locality = '', regionPostal = ''] = event.venueCityLine.split(',').map((s) => s.trim())
+  const [region = '', postalCode = ''] = regionPostal.split(/\s+/)
+  return {
+    '@type': 'Event',
+    '@id': `${url}#event`,
+    name: event.title,
+    description: event.tagline,
+    startDate: event.startISO,
+    endDate: event.endISO,
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    eventStatus: 'https://schema.org/EventScheduled',
+    image: absoluteUrl(event.socialImage),
+    url,
+    isAccessibleForFree: false,
+    location: {
+      '@type': 'Place',
+      name: event.venueName,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: event.venueStreet,
+        addressLocality: locality,
+        addressRegion: region,
+        postalCode,
+        addressCountry: 'US',
+      },
+    },
+    organizer: { '@id': ORG_ID },
+    performer: event.speakers.map((s) => ({
+      '@type': 'Person',
+      name: s.name,
+      description: s.role,
+    })),
+  }
+}
+
 /**
  * Assemble the full @graph for a page: always Organization, WebSite, WebPage,
  * BreadcrumbList, plus any page-specific nodes from meta.schema.

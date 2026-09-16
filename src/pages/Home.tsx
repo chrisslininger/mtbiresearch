@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import type { PageMeta } from '@/seo/types'
 import { PhaseCards } from '@/components/PhaseCards'
 import { MilestoneStepper } from '@/components/MilestoneStepper'
+import { EventCard } from '@/components/EventCard'
+import { upcomingEvents } from '@/content/events'
 import { medicalStudyNode, faqNode } from '@/seo/schema'
 
 export const meta: PageMeta = {
@@ -33,6 +35,8 @@ export const meta: PageMeta = {
 }
 
 export default function Home() {
+  const events = upcomingEvents()
+
   return (
     <>
       {/* Hero */}
@@ -108,6 +112,28 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Upcoming Events */}
+      {events.length > 0 && (
+        <section className="section home-ev">
+          <div className="container">
+            <div className="sh">
+              <p className="eyebrow">Join Us</p>
+              <h2 className="display">Upcoming Events</h2>
+            </div>
+            <div className="ev2-grid">
+              {events.map((e) => (
+                <EventCard key={e.slug} event={e} />
+              ))}
+            </div>
+            <div className="center mt-l">
+              <Link to="/events" className="btn btn-outline">
+                See All Events
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Sponsors */}
       <section className="section-dark section-tight">

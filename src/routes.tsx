@@ -6,6 +6,8 @@
 import type { ComponentType } from 'react'
 import type { PageMeta } from '@/seo/types'
 import { PHASES } from '@/content/phases'
+import { EVENTS } from '@/content/events'
+import { eventNode } from '@/seo/schema'
 
 import Home, { meta as homeMeta } from '@/pages/Home'
 import StudyDesign, { meta as studyDesignMeta } from '@/pages/StudyDesign'
@@ -13,6 +15,8 @@ import ResearchPhases, { meta as researchPhasesMeta } from '@/pages/ResearchPhas
 import PhaseDetail from '@/pages/PhaseDetail'
 import SupportingResearch, { meta as supportingResearchMeta } from '@/pages/SupportingResearch'
 import ResearchTeam, { meta as researchTeamMeta } from '@/pages/ResearchTeam'
+import Events, { meta as eventsMeta } from '@/pages/Events'
+import EventDetail from '@/pages/EventDetail'
 import Fund, { meta as fundMeta } from '@/pages/Fund'
 import Partnership, { meta as partnershipMeta } from '@/pages/Partnership'
 import Organizational, { meta as organizationalMeta } from '@/pages/Organizational'
@@ -46,6 +50,22 @@ const phaseRoutes: RouteEntry[] = PHASES.map((p) => ({
   },
 }))
 
+const eventRoutes: RouteEntry[] = EVENTS.map((e) => ({
+  path: e.path,
+  Component: EventDetail,
+  prerender: true,
+  meta: {
+    path: e.path,
+    title: `${e.title} — mTBI Research`,
+    description: e.cardDesc,
+    updatedAt: e.updatedAt,
+    priority: 0.7,
+    changefreq: 'weekly',
+    ogImage: e.socialImage,
+    schema: [eventNode(e)],
+  },
+}))
+
 export const routes: RouteEntry[] = [
   { path: '/', Component: Home, meta: homeMeta, prerender: true },
   { path: '/study-design', Component: StudyDesign, meta: studyDesignMeta, prerender: true },
@@ -53,6 +73,8 @@ export const routes: RouteEntry[] = [
   ...phaseRoutes,
   { path: '/supporting-research', Component: SupportingResearch, meta: supportingResearchMeta, prerender: true },
   { path: '/research-team', Component: ResearchTeam, meta: researchTeamMeta, prerender: true },
+  { path: '/events', Component: Events, meta: eventsMeta, prerender: true },
+  ...eventRoutes,
   { path: '/support/financial-contribution', Component: Fund, meta: fundMeta, prerender: true },
   { path: '/support/research-partnership', Component: Partnership, meta: partnershipMeta, prerender: true },
   { path: '/support/organizational-support', Component: Organizational, meta: organizationalMeta, prerender: true },
