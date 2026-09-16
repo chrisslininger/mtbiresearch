@@ -8,12 +8,18 @@ date: 2026-09-16
 category: article            # "article" or "research-review"
 excerpt: "One or two sentences shown on the listing card and used as the meta description (aim for 140–160 characters)."
 
+# Header image — every post gets one. Put a 1200x630 JPG in public/images/blog/
+# and reference it here. If omitted, the on-brand default (/images/blog/default.jpg,
+# the craniocervical junction) is used. It appears as the post's photo hero, on the
+# listing card, and as the social-share image.
+image: /images/blog/your-image.jpg
+imageAlt: "One sentence describing the image for screen readers"
+
 # Optional
 # slug: custom-url-slug      # defaults to the filename
 # updatedAt: 2026-10-01
 # author: "Dr. Chris Slininger"   # defaults to "mTBI Research Team"
 # authorType: Person         # Person or Organization (auto-detects "Dr." as Person)
-# image: /images/blog/your-image.jpg   # 1200x630 recommended; used for social sharing
 tags: [mTBI, craniocervical junction, research]
 # draft: true                # keeps the post out of the site until removed
 ---

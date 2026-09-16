@@ -80,7 +80,7 @@ const postRoutes: RouteEntry[] = POSTS.map((p) => ({
     updatedAt: p.updatedAt ?? p.date,
     priority: 0.6,
     changefreq: 'monthly',
-    ...(p.image ? { ogImage: p.image } : {}),
+    ogImage: p.image,
     schema: [blogPostingNode(p)],
   },
 }))

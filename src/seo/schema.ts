@@ -192,7 +192,7 @@ export function blogPostingNode(post: import('@/content/blog').Post): JsonLdNode
     dateModified: post.updatedAt ?? post.date,
     author: { '@type': post.authorType ?? 'Organization', name: post.author },
     publisher: { '@id': ORG_ID },
-    ...(post.image ? { image: absoluteUrl(post.image) } : {}),
+    image: absoluteUrl(post.image),
     articleSection: post.categoryLabel,
     keywords: post.tags.join(', '),
     inLanguage: 'en-US',

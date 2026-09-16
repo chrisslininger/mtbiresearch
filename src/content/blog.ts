@@ -28,12 +28,18 @@ export interface Post {
   excerpt: string
   author: string
   authorType: 'Person' | 'Organization'
-  image?: string
+  /** Header image (1200x630). Falls back to DEFAULT_POST_IMAGE so every post has one. */
+  image: string
+  /** Short description of the header image for screen readers ('' if decorative). */
+  imageAlt: string
   tags: string[]
   /** Rendered HTML body (trusted: authored in-repo). */
   html: string
   readingMinutes: number
 }
+
+/** On-brand fallback header (the craniocervical junction) used when a post sets no image. */
+export const DEFAULT_POST_IMAGE = '/images/blog/default.jpg'
 
 marked.use({ gfm: true, breaks: false })
 
@@ -134,7 +140,8 @@ function build(file: string, src: string): Post | null {
     excerpt: str(front, 'excerpt'),
     author,
     authorType,
-    ...(str(front, 'image') ? { image: str(front, 'image') } : {}),
+    image: str(front, 'image') || DEFAULT_POST_IMAGE,
+    imageAlt: str(front, 'imageAlt'),
     tags: list(front, 'tags'),
     html,
     readingMinutes: Math.max(1, Math.round(words / 200)),

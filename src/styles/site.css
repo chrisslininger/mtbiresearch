@@ -615,14 +615,12 @@
 .post-empty { padding: 30px 0 10px; color: var(--body); }
 .post-empty .lead { margin-bottom: 12px; }
 
-/* Post page */
-.post-hero { text-align: left; padding: 88px 20px 64px; }
-.post-hero .container { max-width: var(--container-narrow); }
-.post-hero .eyebrow a { color: var(--bronze-light); }
-.post-hero .display { font-size: clamp(32px, 4.4vw, 56px); }
-.post-hero-meta { display: flex; flex-wrap: wrap; gap: 6px 10px; font-family: var(--font-sans); font-size: 13.5px; color: oklch(1 0 0 / .8); margin-top: 18px; }
-.post-figure { margin: 0 auto 36px; }
-.post-figure img { width: 100%; height: auto; border-radius: 12px; display: block; }
+/* Post page — photo hero (shares the event hero mechanics, incl. mobile stacking) */
+.post-photo-hero { min-height: 520px; }
+.post-photo-hero .container { max-width: 900px; padding-top: 140px; padding-bottom: 44px; }
+.post-photo-hero .eyebrow a { color: var(--bronze-light); }
+.post-photo-hero .display { font-size: clamp(30px, 4.2vw, 54px); }
+.post-hero-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 10px; font-family: var(--font-sans); font-size: 13.5px; color: oklch(1 0 0 / .85); margin-top: 18px; }
 .post-body { font-size: 17px; line-height: 1.75; }
 .post-body > :first-child { margin-top: 0; }
 .post-body p { margin: 0 0 1.2em; }

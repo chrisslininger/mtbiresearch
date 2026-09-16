@@ -4,11 +4,9 @@ import { formatPostDate, type Post } from '@/content/blog'
 export function PostCard({ post }: { post: Post }) {
   return (
     <article className="post-card">
-      {post.image && (
-        <Link to={post.path} className="post-card-img" tabIndex={-1} aria-hidden="true">
-          <img src={post.image} alt="" loading="lazy" />
-        </Link>
-      )}
+      <Link to={post.path} className="post-card-img" tabIndex={-1} aria-hidden="true">
+        <img src={post.image} alt="" width={1200} height={630} loading="lazy" />
+      </Link>
       <div className="post-card-body">
         <p className="post-meta">
           <span className={`post-cat ${post.category}`}>{post.categoryLabel}</span>

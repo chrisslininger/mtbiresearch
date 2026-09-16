@@ -4,6 +4,9 @@ import { PostCard } from '@/components/PostCard'
 import { POSTS, postBySlug, formatPostDate } from '@/content/blog'
 import NotFound from '@/pages/NotFound'
 
+const HERO_SCRIM =
+  'linear-gradient(180deg, oklch(0.20 0.009 255 / .30) 0%, oklch(0.20 0.009 255 / .45) 35%, oklch(0.20 0.009 255 / .80) 75%, oklch(0.20 0.009 255 / .95) 100%)'
+
 export default function BlogPost() {
   const { pathname } = useLocation()
   const slug = pathname.split('/').filter(Boolean).pop() ?? ''
@@ -14,7 +17,21 @@ export default function BlogPost() {
 
   return (
     <>
-      <section className="page-banner post-hero">
+      <section
+        className="page-banner ev-photo-hero post-photo-hero"
+        style={{
+          backgroundImage: `${HERO_SCRIM}, url('${post.image}')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center 30%',
+        }}
+      >
+        <div
+          className="ev-hero-img"
+          role={post.imageAlt ? 'img' : undefined}
+          aria-label={post.imageAlt || undefined}
+          aria-hidden={post.imageAlt ? undefined : true}
+          style={{ backgroundImage: `url('${post.image}')` }}
+        />
         <div className="container">
           <p className="eyebrow">
             <Link to={`/blog?category=${post.category}`}>{post.categoryLabel}</Link>
@@ -32,11 +49,6 @@ export default function BlogPost() {
 
       <article className="section">
         <div className="container">
-          {post.image && (
-            <figure className="post-figure narrow">
-              <img src={post.image} alt="" width={1200} height={630} />
-            </figure>
-          )}
           <div
             className="narrow prose post-body"
             // Markdown is authored in this repository by the research team.
