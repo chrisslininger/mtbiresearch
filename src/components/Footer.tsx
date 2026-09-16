@@ -28,15 +28,27 @@ export function Footer() {
           <div className="footer-col">
             <h4>Contact Us</h4>
             <p>{SITE.address.org}</p>
-            <p>7601 Dr. M.L.K. Jr. St. N.</p>
-            <p>Suite E</p>
+            <p>{SITE.address.street}</p>
             <p>
               {SITE.address.locality}, {SITE.address.region} {SITE.address.postalCode}
             </p>
             <p style={{ marginTop: '14px' }}>
               <a href={`tel:${SITE.phoneHref}`}>{SITE.phone}</a>
             </p>
+            <p>
+              <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+            </p>
+            <p style={{ marginTop: '14px' }}>
+              <Link to="/contact">Send a message →</Link>
+            </p>
           </div>
+        </div>
+        <div className="footer-legal">
+          {FOOTER.legal.map((l) => (
+            <Link key={l.href} to={l.href}>
+              {l.label}
+            </Link>
+          ))}
         </div>
         <div className="footer-copy">
           © 2026 {SITE.legalName}. All Rights Reserved

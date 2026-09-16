@@ -8,10 +8,10 @@ export const SITE = {
   legalName: 'Advanced Orthogonal Institute',
   /** Production origin. Canonical URLs, sitemap, and OG tags derive from this. */
   origin: 'https://mtbiresearch.com',
-  title: 'mTBI Research — The Mild Traumatic Brain Injury Keystone Study',
+  title: 'mTBI Research — The mTBI Keystone Research Study',
   tagline: 'Making the Invisible Wounds Visible',
   description:
-    'A clinical research study tracing the persistent symptoms of mild traumatic brain injury to their structural roots at the craniocervical junction — to change how the DoD and VA treat it.',
+    'A clinical research study tracing the persistent symptoms of mild traumatic brain injury to their structural roots at the craniocervical junction — to change how the Department of War and the VA treat it.',
   email: 'info@mtbiresearch.com',
   phone: '(727) 677-0001',
   phoneHref: '+17276770001',
@@ -25,7 +25,8 @@ export const SITE = {
   },
   /** Every profile the brand controls — the entity anchor (schema sameAs). */
   sameAs: [] as string[],
-  fundingGoalUsd: 20_000_000,
+  /** Full four-phase program total. Must match FULL_PROGRAM_TOTAL in phases.ts. */
+  fundingGoalUsd: 23_540_662,
 } as const
 
 export interface NavChild {
@@ -57,6 +58,7 @@ export const NAV: NavItem[] = [
     ],
   },
   { label: 'Events', href: '/events' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Media', href: '/media' },
   { label: 'Refer a Participant', href: '/refer' },
   { label: 'Contact Us', href: '/contact' },
@@ -68,18 +70,26 @@ export const FOOTER = {
       heading: 'Support Us',
       links: [
         { label: 'Financial Contribution', href: '/support/financial-contribution' },
-        { label: 'Organizational Support', href: '/support/organizational-support' },
         { label: 'Research Partnership', href: '/support/research-partnership' },
+        { label: 'Organizational Support', href: '/support/organizational-support' },
         { label: 'Refer a Participant', href: '/refer' },
       ],
     },
     {
-      heading: 'About Us',
+      heading: 'About the Research',
       links: [
-        { label: 'About the Research', href: '/study-design' },
-        { label: 'Privacy Policy', href: '/privacy' },
-        { label: 'Terms of Use', href: '/terms' },
+        { label: 'Study Design', href: '/study-design' },
+        { label: 'Research Phases', href: '/research-phases' },
+        { label: 'Supporting Research', href: '/supporting-research' },
+        { label: 'The Research Team', href: '/research-team' },
+        { label: 'Events', href: '/events' },
+        { label: 'Blog', href: '/blog' },
+        { label: 'Media', href: '/media' },
       ],
     },
+  ],
+  legal: [
+    { label: 'Privacy Policy', href: '/privacy' },
+    { label: 'Terms of Use', href: '/terms' },
   ],
 } as const

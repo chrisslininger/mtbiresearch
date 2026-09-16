@@ -3,10 +3,10 @@ import { PageBanner, LastUpdated } from '@/components/blocks'
 
 export const meta: PageMeta = {
   path: '/research-team',
-  title: 'The Research Team — mTBI Keystone Study',
+  title: 'The Research Team — mTBI Keystone Research Study',
   description:
-    'Led by Dr. Chris Slininger — Army veteran, principal investigator — the mTBI Keystone Study team pairs lived experience with a coalition built for scientific rigor.',
-  updatedAt: '2026-08-15',
+    'Led by Dr. Chris Slininger — Army veteran and principal investigator — the mTBI Keystone Research Study team pairs lived experience with institutional rigor.',
+  updatedAt: '2026-09-16',
   priority: 0.7,
   changefreq: 'monthly',
 }
@@ -77,8 +77,8 @@ export default function ResearchTeam() {
               CS
             </div>
             <div>
-              <div className="team-name">Dr. Chris Slininger</div>
-              <div className="team-role">Principal Investigator</div>
+              <h2 className="team-name">Dr. Chris Slininger</h2>
+              <div className="team-role">Principal Investigator · U.S. Army Veteran</div>
               <p>
                 This work is led by someone who understands the population it serves from
                 the inside. Dr. Chris Slininger served in the United States Army from
@@ -109,7 +109,7 @@ export default function ResearchTeam() {
                 {m.initials}
               </div>
               <div>
-                <div className="team-name">{m.name}</div>
+                <h3 className="team-name">{m.name}</h3>
                 <div className="team-role">{m.role}</div>
                 <p>{m.bio}</p>
               </div>
@@ -124,6 +124,11 @@ export default function ResearchTeam() {
             <p className="eyebrow">The Scientific Coalition</p>
             <h2 className="display">Institutional Partners</h2>
           </div>
+          <p className="narrow center coalition-intro">
+            The scientific coalition is the sponsoring institute and the clinical and
+            research partners that execute the study together. Major funders and
+            endorsing organizations stand alongside them.
+          </p>
           <div className="grid-3">
             {COALITION.map((m) => (
               <div className="info-card" key={m.name}>
@@ -134,7 +139,7 @@ export default function ResearchTeam() {
             ))}
           </div>
           <div className="center mt-l">
-            <LastUpdated date="2026-08-15" />
+            <LastUpdated date="2026-09-16" />
           </div>
         </div>
       </section>

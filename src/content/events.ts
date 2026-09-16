@@ -101,12 +101,12 @@ export const EVENTS: EventItem[] = [
       {
         title: 'Making the invisible measurable',
         detail:
-          'The advanced imaging and objective testing — MRI, SPECT, qEEG, and cone beam CT — the study uses to turn “invisible” injuries into data that medicine and policy cannot ignore.',
+          'The advanced imaging and objective testing — MRI, single-photon emission CT (SPECT), quantitative EEG (qEEG), and cone beam CT (CBCT) — the study uses to turn “invisible” injuries into data that medicine and policy cannot ignore.',
       },
       {
         title: 'The warfighter’s fight',
         detail:
-          'Why the special operations community sits at the center of this work, Commander O’Shea’s push to bring it to those who served, and what it could mean for the VA and Department of Defense.',
+          'Why the special operations community sits at the center of this work, Commander O’Shea’s push to bring it to those who served, and what it could mean for the Department of Veterans Affairs (VA) and the Department of War.',
       },
       {
         title: 'Where the science goes next',
@@ -140,7 +140,7 @@ export const EVENTS: EventItem[] = [
         initials: 'DO',
       },
     ],
-    networkingNote: 'A one- to two-hour networking reception follows the talk.',
+    networkingNote: 'A networking reception follows the talk, running until 8:30 PM.',
     updatedAt: '2026-09-16',
   },
 ]

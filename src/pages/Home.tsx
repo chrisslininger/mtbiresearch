@@ -1,37 +1,42 @@
 import { Link } from 'react-router-dom'
 import type { PageMeta } from '@/seo/types'
+import { SITE } from '@/content/site'
 import { PhaseCards } from '@/components/PhaseCards'
 import { MilestoneStepper } from '@/components/MilestoneStepper'
 import { EventCard } from '@/components/EventCard'
+import { FaqList, type Faq } from '@/components/FaqList'
 import { upcomingEvents } from '@/content/events'
 import { medicalStudyNode, faqNode } from '@/seo/schema'
 
+const FAQS: Faq[] = [
+  {
+    q: 'What is the mTBI Keystone Research Study?',
+    a: 'It is a phased clinical research study investigating the craniocervical junction (CCJ) — where the skull meets the upper cervical spine — as a structural root cause of persistent mild traumatic brain injury (mTBI) symptoms in veterans, special operators, and athletes.',
+  },
+  {
+    q: 'Why focus on the craniocervical junction?',
+    a: 'The craniocervical junction is the neurological, vascular, and fluid-dynamic crossroads between the body and the brain. Prevailing mTBI evaluation models have never fully assessed it, which may explain why symptoms like headaches, fog, and dizziness so often outlast standard treatment.',
+  },
+  {
+    q: 'How much funding does the study need?',
+    a: 'The full four-phase program is $23.5 million. It funds a 50-participant pilot, a 400-participant randomized trial with comprehensive diagnostic imaging and direct treatment across three study arms, and the analysis and publication needed to bring the findings to the Department of War, U.S. Special Operations Command (SOCOM), U.S. Central Command (CENTCOM), and the Department of Veterans Affairs (VA).',
+  },
+  {
+    q: 'Who can take part, and when does enrollment open?',
+    a: 'The study is for veterans, special operators, and athletes living with persistent symptoms after mild traumatic brain injury. Phase 1 is a small pilot with a fixed cohort; open enrollment for referred participants begins in Phase 2.',
+  },
+]
+
 export const meta: PageMeta = {
   path: '/',
-  title: 'mTBI Research — The Mild Traumatic Brain Injury Keystone Study',
+  title: SITE.title,
   description:
-    'A clinical study tracing persistent mild traumatic brain injury symptoms to the craniocervical junction — evidence built to change how the DoD and VA treat mTBI.',
-  updatedAt: '2026-08-15',
+    'A clinical study tracing persistent mild traumatic brain injury symptoms to the craniocervical junction — evidence built to change how the Department of War and VA treat mTBI.',
+  updatedAt: '2026-09-16',
   priority: 1.0,
   changefreq: 'weekly',
   ogImage: '/images/brand/hero.jpg',
-  schema: [
-    medicalStudyNode(),
-    faqNode([
-      {
-        q: 'What is the mTBI Keystone Research Study?',
-        a: 'It is a phased clinical research study investigating the craniocervical junction — where the skull meets the upper cervical spine — as a structural root cause of persistent mild traumatic brain injury symptoms in veterans, special operators, and athletes.',
-      },
-      {
-        q: 'Why focus on the craniocervical junction?',
-        a: 'The craniocervical junction is the neurological, vascular, and fluid-dynamic crossroads between the body and the brain. Prevailing mTBI evaluation models have never fully assessed it, which may explain why symptoms like headaches, fog, and dizziness so often outlast standard treatment.',
-      },
-      {
-        q: 'How much funding does the study need?',
-        a: 'The study is raising $20,000,000 to fund comprehensive diagnostic imaging for 400 participants, direct treatment across all three study arms, and the research infrastructure required to bring findings to SOCOM, CENTCOM, and the VA.',
-      },
-    ]),
-  ],
+  schema: [medicalStudyNode(), faqNode(FAQS)],
 }
 
 export default function Home() {
@@ -50,7 +55,7 @@ export default function Home() {
           <div className="hero-sub">Keystone Research Study</div>
           <div>
             <Link to="/support/financial-contribution" className="btn">
-              Get Involved
+              Support the Research
             </Link>
           </div>
         </div>
@@ -66,8 +71,10 @@ export default function Home() {
             traumatic brain injury back to their structural roots — and we are now
             conducting the clinical trial that will make those findings impossible for
             medicine and policy to ignore. What we discover, we will hand directly to
-            the Department of War, SOCOM, CENTCOM, and the VA — not to manage the
-            wounds, but to end them.
+            the Department of War (formerly the Department of Defense), U.S. Special
+            Operations Command (SOCOM), U.S. Central Command (CENTCOM), and the
+            Department of Veterans Affairs (VA) — not to manage the wounds, but to end
+            them.
           </p>
         </div>
       </section>
@@ -96,14 +103,6 @@ export default function Home() {
               crossroads between the body and the brain. This study is not about
               replacing what we know. It is about revealing what we have been missing.
             </p>
-          </div>
-          <div className="mt-l">
-            <div className="video-embed">
-              <div className="play" aria-hidden="true" />
-              <div className="cap">
-                Statistics of TBI &amp; New Research Being Done on It
-              </div>
-            </div>
           </div>
           <div className="center mt-l">
             <Link to="/study-design" className="btn">
@@ -138,26 +137,29 @@ export default function Home() {
       {/* Sponsors */}
       <section className="section-dark section-tight">
         <div className="container center">
-          <p className="eyebrow" style={{ marginBottom: '34px' }}>
-            Sponsors &amp; Support — The Scientific Coalition
+          <p className="eyebrow" style={{ marginBottom: '10px' }}>
+            The Scientific Coalition
+          </p>
+          <p className="coalition-note">
+            The sponsoring institute and clinical and research partners executing the study.
           </p>
           <div className="sponsor-row">
             <div className="sponsor">
-              <span className="logo-badge">AOI</span>
+              <span className="logo-badge" aria-hidden="true">AOI</span>
               <span className="s-name">
-                Advanced Orthogonal<small>Institute</small>
+                Advanced Orthogonal Institute<small>Principal Research Sponsor</small>
               </span>
             </div>
             <div className="sponsor">
-              <span className="logo-badge">C</span>
+              <span className="logo-badge" aria-hidden="true">CCC</span>
               <span className="s-name">
-                Cerebral Chiropractic Center<small>Of Tampa Bay</small>
+                Cerebral Chiropractic Center<small>Clinical Partner · of Tampa Bay</small>
               </span>
             </div>
             <div className="sponsor">
-              <span className="logo-badge">gbi</span>
+              <span className="logo-badge" aria-hidden="true">GBI</span>
               <span className="s-name">
-                Genesis Brain Institute<small>&nbsp;</small>
+                Genesis Brain Institute<small>Research Partner</small>
               </span>
             </div>
           </div>
@@ -173,10 +175,11 @@ export default function Home() {
           </div>
           <p className="narrow center prose">
             This study does not end with data collection. It ends with policy change —
-            and it gets there in four funded research phases. Each one is a complete,
-            publishable body of work that de-risks the next. We are currently in Phase
-            1. Explore each phase to see its goal, its impact, and where the funding
-            stands today.
+            new Department of War and VA standards for how mTBI is screened, diagnosed,
+            and treated — and it gets there in four funded research phases. Each one is
+            a complete, publishable body of work that de-risks the next. We are
+            currently raising funds for Phase 1. Explore each phase to see its goal, its
+            impact, and where the funding stands today.
           </p>
           <div className="mt-l">
             <PhaseCards />
@@ -221,7 +224,7 @@ export default function Home() {
               <p>
                 This study is designed to move the standard of care — a full-spectrum,
                 root-cause investigation into mild traumatic brain injury rigorous
-                enough to reshape DoD policy and redirect VA treatment.
+                enough to reshape Department of War policy and redirect VA treatment.
               </p>
               <p className="emph">Your investment is that belief in action.</p>
               <Link to="/support/financial-contribution" className="btn">
@@ -260,9 +263,9 @@ export default function Home() {
               <div className="thumb thumb-door" />
               <h3>Connect Someone to an Answer</h3>
               <p>
-                Do you know a veteran, an operator, or an NFL athlete who has been
+                Do you know a veteran, a special operator, or an athlete who has been
                 living with symptoms that no treatment has resolved? Refer them to this
-                study. Enrollment opens in Phase 2.
+                study. Open enrollment for referred participants begins in Phase 2.
               </p>
               <p className="emph">They have been waiting long enough.</p>
               <Link to="/refer" className="btn">
@@ -272,6 +275,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <FaqList items={FAQS} />
     </>
   )
 }

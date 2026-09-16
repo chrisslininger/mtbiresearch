@@ -7,7 +7,7 @@ export const meta: PageMeta = {
   title: 'Research Partnership — mTBI Keystone Study',
   description:
     'Partner on the mTBI Keystone Study. Imaging centers, universities, and clinical experts can strengthen the science behind a root-cause investigation of mTBI.',
-  updatedAt: '2026-08-15',
+  updatedAt: '2026-09-16',
   priority: 0.7,
   changefreq: 'monthly',
 }
@@ -31,7 +31,7 @@ export default function Partnership() {
               methodological or neurological expertise, there may be a place for you in
               this work.
             </p>
-            <h3>Where partners fit</h3>
+            <h2>Where partners fit</h2>
             <p>
               Partnership opportunities span diagnostic imaging capacity, participant
               recruitment and care, biostatistics and study design, and dissemination.

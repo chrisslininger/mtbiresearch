@@ -7,7 +7,7 @@ export const meta: PageMeta = {
   title: 'Organizational Support — Endorse the mTBI Study',
   description:
     'Lend your organization’s voice to the mTBI Keystone Study. Endorsements from groups serving veterans, operators, and athletes signal to funders and policymakers.',
-  updatedAt: '2026-08-15',
+  updatedAt: '2026-09-16',
   priority: 0.7,
   changefreq: 'monthly',
 }
@@ -31,7 +31,7 @@ export default function Organizational() {
               believe in this work — and that belief is often what moves a study from
               the margins to the center of the conversation.
             </p>
-            <h3>What an endorsement does</h3>
+            <h2>What an endorsement does</h2>
             <p>
               Endorsing organizations are recognized as part of the scientific and
               advocacy coalition behind the study. Your name helps open doors at the

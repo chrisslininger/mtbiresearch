@@ -7,7 +7,7 @@ export const meta: PageMeta = {
   title: 'Privacy Policy — mTBI Research',
   description:
     'How the mTBI Keystone Research Study collects, uses, and protects information submitted through mtbiresearch.com, including contact and referral form data.',
-  updatedAt: '2026-08-15',
+  updatedAt: '2026-09-16',
   priority: 0.3,
   changefreq: 'yearly',
 }
@@ -21,31 +21,30 @@ export default function Privacy() {
           <div className="narrow prose">
             <p>
               This policy explains how {SITE.legalName} handles information collected
-              through mtbiresearch.com. It is provided as a starting template and should
-              be reviewed by counsel before launch.
+              through mtbiresearch.com.
             </p>
-            <h3>Information we collect</h3>
+            <h2>Information we collect</h2>
             <p>
               We collect the information you voluntarily submit through our contact,
               referral, contribution, partnership, and endorsement forms — such as your
               name, email, phone, organization, and message. We do not sell your
               information.
             </p>
-            <h3>How we use it</h3>
+            <h2>How we use it</h2>
             <p>
               Submitted information is used solely to respond to your inquiry, process
               contributions and referrals, and coordinate the research effort. Referral
               information is handled with particular care and shared only with the
               research team responsible for enrollment.
             </p>
-            <h3>Contact</h3>
+            <h2>Contact</h2>
             <p>
               Questions about this policy can be directed to{' '}
               <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
             </p>
           </div>
           <div className="center mt-l">
-            <LastUpdated date="2026-08-15" />
+            <LastUpdated date="2026-09-16" />
           </div>
         </div>
       </section>

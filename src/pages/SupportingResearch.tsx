@@ -1,12 +1,13 @@
+import { Link } from 'react-router-dom'
 import type { PageMeta } from '@/seo/types'
 import { PageBanner, LastUpdated } from '@/components/blocks'
 
 export const meta: PageMeta = {
   path: '/supporting-research',
-  title: 'Supporting Research — mTBI Keystone Study',
+  title: 'Supporting Research — mTBI Keystone Research Study',
   description:
-    'The scientific groundwork behind the mTBI Keystone Study: sixteen years of research linking the craniocervical junction to persistent brain-injury symptoms.',
-  updatedAt: '2026-08-15',
+    'The scientific groundwork behind the mTBI Keystone Research Study: sixteen years of work linking the craniocervical junction to persistent brain-injury symptoms.',
+  updatedAt: '2026-09-16',
   priority: 0.7,
   changefreq: 'monthly',
 }
@@ -24,15 +25,16 @@ export default function SupportingResearch() {
         <div className="container">
           <div className="narrow prose">
             <p>
-              The Keystone Study did not begin in a vacuum. It rests on more than a
-              decade of clinical observation and imaging work connecting the
-              craniocervical junction to the neurological, vascular, and
+              The mTBI Keystone Research Study did not begin in a vacuum. It rests on
+              sixteen years of clinical observation and imaging work connecting the
+              craniocervical junction (CCJ) to the neurological, vascular, and
               cerebrospinal-fluid disturbances that accompany persistent mild traumatic
-              brain injury. This page collects the peer-reviewed literature, imaging
-              findings, and clinical case series that motivated the trial.
+              brain injury. This page is where the peer-reviewed literature, imaging
+              findings, and clinical case series that motivated the trial will be
+              collected.
             </p>
 
-            <h3>What the existing evidence shows</h3>
+            <h2>What the existing evidence shows</h2>
             <p>
               Across the published record, three threads converge: mTBI symptoms
               frequently persist long after the expected recovery window; conventional
@@ -43,7 +45,7 @@ export default function SupportingResearch() {
               incidental or causal.
             </p>
 
-            <h3>A living bibliography</h3>
+            <h2>A living bibliography</h2>
             <p>
               As the study progresses, this page will host the full citation list,
               links to primary sources, and plain-language summaries of each finding, so
@@ -52,14 +54,13 @@ export default function SupportingResearch() {
               is meant to be checkable.
             </p>
             <p>
-              <em>
-                Reference list and downloadable summaries are being compiled for
-                publication here (provisional — content in progress).
-              </em>
+              Until the reference list is published here, the research team’s
+              plain-language reviews of relevant studies appear on the{' '}
+              <Link to="/blog?category=research-review">Blog</Link>.
             </p>
           </div>
           <div className="center mt-l">
-            <LastUpdated date="2026-08-15" />
+            <LastUpdated date="2026-09-16" />
           </div>
         </div>
       </section>

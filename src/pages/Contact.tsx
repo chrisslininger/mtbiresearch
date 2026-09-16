@@ -8,7 +8,7 @@ export const meta: PageMeta = {
   title: 'Contact Us — mTBI Keystone Research Study',
   description:
     'Contact the mTBI Keystone Research Study team at the Advanced Orthogonal Institute in St. Petersburg, Florida — for funding, partnership, media, and referrals.',
-  updatedAt: '2026-08-15',
+  updatedAt: '2026-09-16',
   priority: 0.6,
   changefreq: 'yearly',
 }
@@ -21,11 +21,11 @@ export default function Contact() {
         <div className="container">
           <div className="grid-2">
             <div className="prose">
-              <h3>The Research Team</h3>
+              <h2>The Research Team</h2>
               <p>
                 {SITE.legalName}
                 <br />
-                7601 Dr. M.L.K. Jr. St. N., Suite E
+                {SITE.address.street}
                 <br />
                 {SITE.address.locality}, {SITE.address.region} {SITE.address.postalCode}
               </p>

@@ -2,28 +2,37 @@ import type { PageMeta } from '@/seo/types'
 import { PageBanner, SectionHeading } from '@/components/blocks'
 import { MilestoneStepper } from '@/components/MilestoneStepper'
 import { InquiryForm } from '@/components/InquiryForm'
+import { FaqList, type Faq } from '@/components/FaqList'
 import { faqNode } from '@/seo/schema'
+
+const FAQS: Faq[] = [
+  {
+    q: 'Where does my contribution go?',
+    a: 'Contributions fund comprehensive diagnostic imaging for participants, direct treatment across the study arms, and the research infrastructure required to bring findings to the Department of War, U.S. Special Operations Command (SOCOM), U.S. Central Command (CENTCOM), and the Department of Veterans Affairs (VA).',
+  },
+  {
+    q: 'Can I fund a specific participant or a specific phase?',
+    a: 'Yes. Contributions can be directed to a specific research phase or to sponsor a participant. Contact the research team to arrange directed or named giving.',
+  },
+  {
+    q: 'How do I actually make a gift?',
+    a: 'Gifts are arranged personally. Tell us how you would like to give using the form on this page, and the research team will follow up to complete your contribution.',
+  },
+  {
+    q: 'Is the sponsoring organization a nonprofit?',
+    a: 'Yes. The study is sponsored by the Advanced Orthogonal Institute, a 501(c)(3) nonprofit organization. The research team can provide documentation for your records on request.',
+  },
+]
 
 export const meta: PageMeta = {
   path: '/support/financial-contribution',
   title: 'Financial Contribution — Fund the mTBI Study',
   description:
-    'Fund the mTBI Keystone Study. Contributions cover diagnostic imaging, participant treatment, and the research infrastructure to bring findings to the DoD and VA.',
-  updatedAt: '2026-08-15',
+    'Fund the mTBI Keystone Research Study. Contributions cover diagnostic imaging, participant treatment, and the infrastructure to bring findings to the Department of War and VA.',
+  updatedAt: '2026-09-16',
   priority: 0.9,
   changefreq: 'weekly',
-  schema: [
-    faqNode([
-      {
-        q: 'Where does my contribution go?',
-        a: 'Contributions fund comprehensive diagnostic imaging for participants, direct treatment across the study arms, and the research infrastructure required to bring findings to SOCOM, CENTCOM, and the VA.',
-      },
-      {
-        q: 'Can I fund a specific veteran or a specific phase?',
-        a: 'Yes. Contributions can be directed to a specific research phase or to sponsor a participant. Contact the research team to arrange directed or named giving.',
-      },
-    ]),
-  ],
+  schema: [faqNode(FAQS)],
 }
 
 export default function Fund() {
@@ -32,7 +41,7 @@ export default function Fund() {
       <PageBanner
         eyebrow="Support the Research"
         title="Financial Contribution"
-        tag="Every dollar moves this forward"
+        tag="Fund the work, one phase at a time"
         image="/images/banners/financial-contribution.jpg"
       />
 
@@ -40,7 +49,7 @@ export default function Fund() {
         <div className="container">
           <div className="sh">
             <p className="eyebrow">Every Dollar Moves This Forward</p>
-            <h2 className="display">Fund the Work, One Phase at a Time</h2>
+            <h2 className="display">Where the Funding Stands</h2>
           </div>
           <p className="narrow center">
             The full program is $23.5 million, staged across four phases so each stands
@@ -58,15 +67,15 @@ export default function Fund() {
           <SectionHeading eyebrow="Ways to Give" title="Giving Levels" />
           <div className="narrow">
             <div className="tier">
-              <h4>Sponsor a Participant</h4>
+              <h3>Sponsor a Participant</h3>
               <p className="amt">$57,500</p>
               <p>
                 Underwrite the full diagnostic imaging and treatment pathway for one
-                veteran through the study.
+                participant through the study.
               </p>
             </div>
             <div className="tier">
-              <h4>Fund the Pilot</h4>
+              <h3>Fund the Pilot</h3>
               <p className="amt">Phase 1 · $384,702</p>
               <p>
                 Move the current phase across the finish line and prove the signal that
@@ -74,11 +83,12 @@ export default function Fund() {
               </p>
             </div>
             <div className="tier">
-              <h4>Coalition Partner</h4>
+              <h3>Coalition Partner</h3>
               <p className="amt">Custom · $250,000+</p>
               <p>
                 Major and institutional gifts that anchor a phase and place your
-                organization at the center of the scientific coalition.
+                organization alongside the sponsoring institute and research partners
+                at the center of the study.
               </p>
             </div>
           </div>
@@ -88,6 +98,12 @@ export default function Fund() {
       <section className="section-light section">
         <div className="container">
           <SectionHeading eyebrow="Start the Conversation" title="Make a Contribution" />
+          <p className="narrow center form-lead">
+            Gifts are arranged personally, not through an online checkout. Tell us how
+            you'd like to give and the research team will follow up to complete your
+            contribution. The study is sponsored by the Advanced Orthogonal Institute, a
+            501(c)(3) nonprofit.
+          </p>
           <InquiryForm
             kind="financial-contribution"
             fields={[
@@ -95,11 +111,13 @@ export default function Fund() {
               { name: 'phone', label: 'Phone (optional)', type: 'tel' },
               { name: 'message', label: 'How would you like to give?', type: 'textarea' },
             ]}
-            submitLabel="Send"
+            submitLabel="Start the Conversation"
             successMessage="Thank you. Your interest in funding the study has been received — the research team will reach out to arrange your contribution."
           />
         </div>
       </section>
+
+      <FaqList items={FAQS} />
     </>
   )
 }

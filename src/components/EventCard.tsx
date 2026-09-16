@@ -8,9 +8,11 @@ import type { EventItem } from '@/content/events'
  */
 export function EventCard({ event }: { event: EventItem }) {
   return (
-    <Link to={event.path} className="ev2" aria-label={event.title}>
+    <Link to={event.path} className="ev2">
       <div
         className="ev2-img"
+        role="img"
+        aria-label={event.speakers.map((s) => s.name).join(' and ')}
         style={{ backgroundImage: `url('${event.image}')` }}
       >
         <div className="ev2-db">

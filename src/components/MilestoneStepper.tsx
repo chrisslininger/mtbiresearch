@@ -40,8 +40,15 @@ export function MilestoneStepper() {
               type="button"
               className={cls.join(' ')}
               role="tab"
+              id={`phase-tab-${p.number}`}
               aria-selected={p.number === sel}
+              aria-controls="phase-panel"
+              tabIndex={p.number === sel ? 0 : -1}
               onClick={() => setSel(p.number)}
+              onKeyDown={(e) => {
+                if (e.key === 'ArrowRight') setSel(Math.min(PHASES.length, sel + 1))
+                if (e.key === 'ArrowLeft') setSel(Math.max(1, sel - 1))
+              }}
             >
               {i < PHASES.length - 1 && <span className="line" aria-hidden="true" />}
               <span className="dot">{p.number}</span>
@@ -52,7 +59,12 @@ export function MilestoneStepper() {
         })}
       </div>
 
-      <div className="panel">
+      <div
+        className="panel"
+        role="tabpanel"
+        id="phase-panel"
+        aria-labelledby={`phase-tab-${sel}`}
+      >
         <div className="p-head">
           <div>
             <div className="p-name">
@@ -70,14 +82,14 @@ export function MilestoneStepper() {
           <div
             className={`fill ${st === 'funded' ? 'solid' : 'striped'}`}
             style={{
-              width: `${st === 'funded' ? 100 : st === 'current' ? Math.max(pct, raised > 0 ? 1.5 : 0) : 0}%`,
+              width: `${st === 'funded' ? 100 : Math.max(pct, raised > 0 ? 1.5 : 0)}%`,
             }}
           />
         </div>
 
         <div className="legend">
           <div className="raised">
-            {st === 'future' ? formatUsd(0) : formatUsd(st === 'funded' ? goal : raised)}{' '}
+            {formatUsd(st === 'funded' ? goal : raised)}{' '}
             <span className="goal">
               {st === 'future'
                 ? 'committed so far'
@@ -116,10 +128,10 @@ export function MilestoneStepper() {
         {st === 'future' && (
           <>
             <div className="msg">
-              We're currently in <strong>Phase {CURRENT} · {PHASES[CURRENT - 1].name}</strong>{' '}
-              and fundraising for it now. If you'd like to commit early to{' '}
-              <strong>{phase.name}</strong> — funding the full trial and the veterans' care
-              it delivers — we'd love to talk about it.
+              We're currently raising funds for{' '}
+              <strong>Phase {CURRENT} · {PHASES[CURRENT - 1].name}</strong>. If you'd like
+              to commit early to <strong>Phase {phase.number} · {phase.name}</strong> —{' '}
+              {phase.subtitle.toLowerCase()} — we'd love to talk about it.
             </div>
             <div className="fs-actions">
               <Link className="btn" to="/support/financial-contribution">

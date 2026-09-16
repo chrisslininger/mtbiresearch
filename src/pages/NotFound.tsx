@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import type { PageMeta } from '@/seo/types'
-import { PageBanner } from '@/components/blocks'
 
 export const meta: PageMeta = {
   path: '/404',
@@ -13,21 +12,30 @@ export const meta: PageMeta = {
 
 export default function NotFound() {
   return (
-    <>
-      <PageBanner title="Page Not Found" tag="That page could not be found" />
-      <section className="section">
-        <div className="container center prose">
-          <p>
-            The page you were looking for doesn’t exist or may have moved. Let’s get you
-            back on track.
-          </p>
-          <div className="mt-m">
-            <Link to="/" className="btn">
-              Return Home
-            </Link>
-          </div>
+    <section className="nf-hero">
+      <div className="container center">
+        <div className="nf-code" aria-hidden="true">
+          404
         </div>
-      </section>
-    </>
+        <p className="eyebrow">Page Not Found</p>
+        <h1 className="display">This Page Could Not Be Found</h1>
+        <p className="nf-sub">
+          The page you were looking for doesn’t exist or may have moved. Let’s get you
+          back on track.
+        </p>
+        <div className="nf-actions">
+          <Link to="/" className="btn">
+            Return to Homepage
+          </Link>
+        </div>
+        <nav className="nf-links" aria-label="Helpful links">
+          <Link to="/study-design">Study Design</Link>
+          <Link to="/research-phases">Research Phases</Link>
+          <Link to="/events">Events</Link>
+          <Link to="/support/financial-contribution">Support the Research</Link>
+          <Link to="/contact">Contact Us</Link>
+        </nav>
+      </div>
+    </section>
   )
 }

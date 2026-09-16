@@ -7,7 +7,7 @@ export const meta: PageMeta = {
   path: '/events',
   title: 'Events — mTBI Research',
   description:
-    'Talks and gatherings on the research reshaping how we understand concussion, brain injury, and warfighter recovery — with the team behind the mTBI Keystone Study.',
+    'Talks and gatherings on the research reshaping how we understand concussion, brain injury, and warfighter recovery, with the mTBI Keystone Research Study team.',
   updatedAt: '2026-09-16',
   priority: 0.8,
   changefreq: 'weekly',

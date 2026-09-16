@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom'
 import { PageBanner, LastUpdated } from '@/components/blocks'
 import { PHASES, phaseBySlug, type Phase } from '@/content/phases'
+import NotFound from '@/pages/NotFound'
 import { usePhaseTotals, phaseTotal } from '@/lib/queries/funding'
 import { formatUsd } from '@/lib/utils'
 
@@ -37,11 +38,11 @@ function PhaseFunding({ phase }: { phase: Phase }) {
       {covered !== null && phase.participantTarget && phase.costPerParticipant && (
         <div className="pf-impact">
           <div className="pf-impact-num">
-            {covered} <span>of {phase.participantTarget} veterans covered</span>
+            {covered} <span>of {phase.participantTarget} participants covered</span>
           </div>
           <p className="pf-impact-note">
-            About {formatUsd(phase.costPerParticipant)} carries one veteran through this
-            phase — every gift is measured in lives, not just dollars.
+            About {formatUsd(phase.costPerParticipant)} carries one participant through
+            this phase — every gift is measured in lives, not just dollars.
           </p>
         </div>
       )}
@@ -58,7 +59,8 @@ function PhaseFunding({ phase }: { phase: Phase }) {
 export default function PhaseDetail() {
   const { pathname } = useLocation()
   const slug = pathname.split('/').filter(Boolean).pop() ?? ''
-  const phase = phaseBySlug(slug) ?? PHASES[0]
+  const phase = phaseBySlug(slug)
+  if (!phase) return <NotFound />
   const idx = PHASES.findIndex((p) => p.number === phase.number)
   const prev = idx > 0 ? PHASES[idx - 1] : null
   const next = idx < PHASES.length - 1 ? PHASES[idx + 1] : null
@@ -128,7 +130,7 @@ export default function PhaseDetail() {
             </Link>
           </div>
           <div className="center mt-m">
-            <LastUpdated date="2026-08-15" />
+            <LastUpdated date="2026-09-16" />
           </div>
         </div>
       </section>

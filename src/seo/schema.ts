@@ -59,26 +59,45 @@ function webPageNode(meta: PageMeta): JsonLdNode {
   }
 }
 
+/**
+ * Human names for intermediate path segments that have their own page. Segments
+ * not listed here (e.g. "/support") have no landing page and are skipped so the
+ * breadcrumb never links to a 404.
+ */
+const CRUMB_NAMES: Record<string, string> = {
+  '/study-design': 'Study Design',
+  '/research-phases': 'Research Phases',
+  '/supporting-research': 'Supporting Research',
+  '/research-team': 'The Research Team',
+  '/events': 'Events',
+  '/blog': 'Blog',
+  '/media': 'Media',
+  '/refer': 'Refer a Participant',
+  '/contact': 'Contact Us',
+  '/support/financial-contribution': 'Financial Contribution',
+  '/support/research-partnership': 'Research Partnership',
+  '/support/organizational-support': 'Organizational Support',
+  '/privacy': 'Privacy Policy',
+  '/terms': 'Terms of Use',
+}
+
 function breadcrumbNode(meta: PageMeta): JsonLdNode {
   const segments = meta.path.split('/').filter(Boolean)
   const items: JsonLdNode[] = [
-    {
-      '@type': 'ListItem',
-      position: 1,
-      name: 'Home',
-      item: SITE.origin,
-    },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.origin },
   ]
   let acc = ''
   segments.forEach((seg, i) => {
     acc += `/${seg}`
+    const isLeaf = i === segments.length - 1
+    const known = CRUMB_NAMES[acc]
+    // Skip intermediate segments with no page of their own.
+    if (!isLeaf && !known) return
+    const name = isLeaf ? meta.title.split(' — ')[0] : known
     items.push({
       '@type': 'ListItem',
-      position: i + 2,
-      name: seg
-        .split('-')
-        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-        .join(' '),
+      position: items.length + 1,
+      name,
       item: absoluteUrl(acc),
     })
   })
@@ -106,9 +125,11 @@ export function medicalStudyNode(): JsonLdNode {
   return {
     '@type': 'MedicalStudy',
     '@id': `${SITE.origin}/#study`,
-    name: 'The Mild Traumatic Brain Injury Keystone Research Study',
+    name: 'The mTBI Keystone Research Study',
+    alternateName: 'The Mild Traumatic Brain Injury Keystone Research Study',
     description:
       'A phased clinical research study investigating the craniocervical junction as a structural root cause of persistent mild traumatic brain injury symptoms in veterans, special operators, and athletes.',
+    status: 'https://schema.org/Recruiting',
     studySubject: {
       '@type': 'MedicalCondition',
       name: 'Mild Traumatic Brain Injury (mTBI)',
@@ -134,7 +155,8 @@ export function eventNode(event: import('@/content/events').EventItem): JsonLdNo
     eventStatus: 'https://schema.org/EventScheduled',
     image: absoluteUrl(event.socialImage),
     url,
-    isAccessibleForFree: false,
+    // Invitation-only, not ticketed — there is no price to attend.
+    isAccessibleForFree: true,
     location: {
       '@type': 'Place',
       name: event.venueName,
@@ -153,6 +175,41 @@ export function eventNode(event: import('@/content/events').EventItem): JsonLdNo
       name: s.name,
       description: s.role,
     })),
+  }
+}
+
+/** Build a schema.org/BlogPosting node for an individual post. */
+export function blogPostingNode(post: import('@/content/blog').Post): JsonLdNode {
+  const url = absoluteUrl(post.path)
+  return {
+    '@type': 'BlogPosting',
+    '@id': `${url}#post`,
+    headline: post.title,
+    description: post.excerpt,
+    url,
+    mainEntityOfPage: { '@id': `${url}#webpage` },
+    datePublished: post.date,
+    dateModified: post.updatedAt ?? post.date,
+    author: { '@type': post.authorType ?? 'Organization', name: post.author },
+    publisher: { '@id': ORG_ID },
+    ...(post.image ? { image: absoluteUrl(post.image) } : {}),
+    articleSection: post.categoryLabel,
+    keywords: post.tags.join(', '),
+    inLanguage: 'en-US',
+    isPartOf: { '@id': `${SITE.origin}/blog#blog` },
+  }
+}
+
+/** Build a schema.org/Blog node for the listing page. */
+export function blogNode(posts: import('@/content/blog').Post[]): JsonLdNode {
+  return {
+    '@type': 'Blog',
+    '@id': `${SITE.origin}/blog#blog`,
+    name: `${SITE.name} Blog`,
+    description: 'Articles and research reviews from the mTBI Keystone Research Study team.',
+    url: absoluteUrl('/blog'),
+    publisher: { '@id': ORG_ID },
+    blogPost: posts.map((p) => ({ '@id': `${absoluteUrl(p.path)}#post` })),
   }
 }
 
