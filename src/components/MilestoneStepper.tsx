@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { PHASES } from '@/content/phases'
+import { PHASES, phaseStatusLabel } from '@/content/phases'
 import { usePhaseTotals, phaseTotal } from '@/lib/queries/funding'
 import { formatUsd } from '@/lib/utils'
 
@@ -53,7 +53,7 @@ export function MilestoneStepper() {
               {i < PHASES.length - 1 && <span className="line" aria-hidden="true" />}
               <span className="dot">{p.number}</span>
               <span className="sn">{p.stepperName}</span>
-              {p.number === CURRENT && <span className="now">Now Funding</span>}
+              {p.number === CURRENT && <span className="now">{phaseStatusLabel(p)}</span>}
             </button>
           )
         })}
@@ -74,7 +74,7 @@ export function MilestoneStepper() {
             <div className="p-meta">{phase.meta}</div>
           </div>
           {st === 'funded' && <span className="state-pill funded">✓ Fully Funded</span>}
-          {st === 'current' && <span className="state-pill current">● Now Funding</span>}
+          {st === 'current' && <span className="state-pill current">● {phaseStatusLabel(phase)}</span>}
           {st === 'future' && <span className="state-pill future">Upcoming</span>}
         </div>
 
@@ -119,6 +119,9 @@ export function MilestoneStepper() {
               </Link>
             </div>
             <div className="note">
+              {phase.status === 'active'
+                ? `Phase ${phase.number} research is underway and onboarding participants now — funding it completes the care every participant receives. `
+                : ''}
               Gifts beyond Phase {phase.number}'s goal carry forward to help launch Phase{' '}
               {Math.min(phase.number + 1, PHASES.length)}.
             </div>
@@ -128,8 +131,8 @@ export function MilestoneStepper() {
         {st === 'future' && (
           <>
             <div className="msg">
-              We're currently raising funds for{' '}
-              <strong>Phase {CURRENT} · {PHASES[CURRENT - 1].name}</strong>. If you'd like
+              <strong>Phase {CURRENT} · {PHASES[CURRENT - 1].name}</strong> is{' '}
+              {PHASES[CURRENT - 1].status === 'active' ? 'underway and still being funded' : 'the phase we are raising funds for now'}. If you'd like
               to commit early to <strong>Phase {phase.number} · {phase.name}</strong> —{' '}
               {phase.subtitle.toLowerCase()} — we'd love to talk about it.
             </div>

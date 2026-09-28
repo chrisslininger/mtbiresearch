@@ -52,6 +52,7 @@ export const NAV: NavItem[] = [
   {
     label: 'Support the Research',
     children: [
+      { label: 'Apply to Participate', href: '/apply' },
       { label: 'Financial Contribution', href: '/support/financial-contribution' },
       { label: 'Research Partnership', href: '/support/research-partnership' },
       { label: 'Organizational Support', href: '/support/organizational-support' },
@@ -69,6 +70,7 @@ export const FOOTER = {
     {
       heading: 'Support Us',
       links: [
+        { label: 'Apply to Participate', href: '/apply' },
         { label: 'Financial Contribution', href: '/support/financial-contribution' },
         { label: 'Research Partnership', href: '/support/research-partnership' },
         { label: 'Organizational Support', href: '/support/organizational-support' },

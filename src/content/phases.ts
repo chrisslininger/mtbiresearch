@@ -18,6 +18,8 @@ export interface PhaseSpec {
   value: string
 }
 
+export type PhaseStatus = 'active' | 'funding' | 'upcoming' | 'complete'
+
 export interface Phase {
   number: number
   slug: string
@@ -27,7 +29,18 @@ export interface Phase {
   subtitle: string
   meta: string
   goal: number
+  /** The phase we are currently fundraising for (drives the stepper + cards). */
   current: boolean
+  /**
+   * Operational status. 'active' = research underway and participants being
+   * onboarded (may still be fundraising); 'funding' = fundraising, not yet
+   * started; 'upcoming' = future; 'complete' = finished.
+   */
+  status: PhaseStatus
+  /** IRB / oversight line shown on the phase page and wherever participants are onboarded. */
+  oversight?: string
+  /** "What happens during this phase" — shown on the phase page as a numbered walk-through. */
+  timeline?: Array<{ title: string; detail: string }>
   /** Short name for the milestone stepper. */
   stepperName: string
   /** Card thumbnail image. */
@@ -57,6 +70,41 @@ export const PHASES: Phase[] = [
     meta: '50 participants · single-arm craniocervical care · six months',
     goal: 384_702,
     current: true,
+    status: 'active',
+    oversight:
+      'Phase 1 is conducted under the oversight of the Institutional Review Board (IRB) of Sherman College of Chiropractic.',
+    timeline: [
+      {
+        title: 'Application and screening',
+        detail:
+          'Veterans living with persistent post-mTBI symptoms apply online. The research team reviews every application personally; veterans who served in Special Operations are prioritized for the first cohort.',
+      },
+      {
+        title: 'Initial consultation and evaluation',
+        detail:
+          'Selected applicants complete an initial consultation and evaluation at Cerebral Chiropractic Center in St. Petersburg (about one and a half hours) to confirm they are a candidate for care.',
+      },
+      {
+        title: 'Baseline assessments and imaging',
+        detail:
+          'Before care begins, each participant completes validated symptom scales, neurological and cognitive testing, balance and sensory-motor evaluation, and in-clinic X-ray imaging of the craniocervical junction.',
+      },
+      {
+        title: 'Eight weeks of craniocervical care',
+        detail:
+          'Participants are seen two to three times per week for eight weeks, receiving precise, image-guided upper cervical care using the Advanced Orthogonal (C1000) method — no drugs, no surgery.',
+      },
+      {
+        title: 'Final assessments and imaging',
+        detail:
+          'At the end of the care period, every baseline measure is repeated — the same scales, testing, and imaging — so each participant’s change is measured against their own starting point.',
+      },
+      {
+        title: 'Analysis and publication',
+        detail:
+          'The before-and-after data across all fifty participants is analyzed and published as the pilot evidence that justifies the full randomized trial.',
+      },
+    ],
     stepperName: 'CCJ Pilot Study',
     image: '/images/phases/phase-1.jpg',
     cardDesc:
@@ -73,7 +121,7 @@ export const PHASES: Phase[] = [
     ],
     body: [
       'Phase 1 asks the first and most fundamental question, and answers it. In fifty participants — veterans, special operators, and athletes living with persistent symptoms — it tests whether correcting alignment at the craniocervical junction (CCJ, where the skull meets the upper cervical spine) produces measurable improvement, using nothing but precise, image-guided upper cervical care. These are people who have often already tried everything the conventional system offers. Phase 1 gives them a genuinely different approach, and it measures the result with real instruments: validated symptom scales, neurological and cognitive testing, balance and sensory-motor evaluation, and imaging before and after.',
-      'Phase 1 is a standalone pilot: its fifty participants are drawn from a fixed pilot cohort, and they are not counted toward the 400-participant randomized trial that follows. Open enrollment for participants referred to the study begins in Phase 2.',
+      'Phase 1 is a standalone pilot, and its fifty participants are not counted toward the 400-participant randomized trial that follows. Phase 1 is now underway and onboarding participants: veterans living with persistent post-mTBI symptoms can apply, with veterans who served in Special Operations prioritized for the first cohort. It is conducted under the oversight of the Institutional Review Board (IRB) of Sherman College of Chiropractic.',
       'The impact of this phase reaches well beyond the fifty who take part. Its findings become the first published evidence that the craniocervical model works — evidence shared openly with the biomedical and military research communities. In the language of federal science, this is the preliminary data that opens doors. Without it, the larger trial is a hypothesis. With it, the larger trial becomes a credible, fundable national priority.',
     ],
     deliversHeading: 'What it proves',
@@ -91,6 +139,7 @@ export const PHASES: Phase[] = [
     meta: '20 participants · two treatment lanes · full imaging suite · six months',
     goal: 2_050_070,
     current: false,
+    status: 'upcoming',
     stepperName: 'Prep & Preliminary Outcomes',
     image: '/images/phases/phase-2.jpg',
     cardDesc:
@@ -107,7 +156,7 @@ export const PHASES: Phase[] = [
     ],
     body: [
       'Phase 2 does two powerful things at once. It builds and tests the entire operational apparatus of the full national trial, and it runs the first direct, side-by-side comparison between structural care and brain-focused care. Twenty participants take part — ten receiving craniocervical correction and ten receiving brain-focused care, meaning hyperbaric oxygen therapy paired with photobiomodulation (light therapy). Every one of them moves through the complete diagnostic battery: advanced MRI, single-photon emission CT (SPECT), quantitative EEG (qEEG), and cone beam CT (CBCT).',
-      'Phase 2 is also where open enrollment begins: participants referred to the study are enrolled from this phase forward, and its twenty participants become the first twenty of the 400-participant randomized trial completed in Phase 3.',
+      'Phase 2 widens enrollment beyond the pilot — veterans, special operators, and athletes — and its twenty participants become the first twenty of the 400-participant randomized trial completed in Phase 3.',
       'This is the phase that transforms a promising approach into a fully operational research program. Its preparation is deliberately front-loaded, so that when Phase 2 ends the data can be published immediately and the full trial can begin enrolling participants without a single day of setup delay. The dedicated treatment and imaging equipment purchased here does not disappear when the study ends — it becomes permanent capacity to care for veterans, operators, and athletes for years to come.',
     ],
     deliversHeading: 'What it proves',
@@ -125,6 +174,7 @@ export const PHASES: Phase[] = [
     meta: '380 additional participants · 400 in the trial with Phase 2 · three arms · eighteen months',
     goal: 20_069_695,
     current: false,
+    status: 'upcoming',
     stepperName: 'The Full RCT',
     image: '/images/phases/phase-3.jpg',
     cardDesc:
@@ -158,6 +208,7 @@ export const PHASES: Phase[] = [
     meta: 'final analysis and multi-journal dissemination · six months',
     goal: 1_036_195,
     current: false,
+    status: 'upcoming',
     stepperName: 'Analytics & Publication',
     image: '/images/phases/phase-4.jpg',
     cardDesc:
@@ -185,4 +236,18 @@ export const PHASES: Phase[] = [
 
 export function phaseBySlug(slug: string): Phase | undefined {
   return PHASES.find((p) => p.slug === slug)
+}
+
+/** Short status label used on cards, the stepper, and phase banners. */
+export function phaseStatusLabel(p: Phase): string {
+  switch (p.status) {
+    case 'active':
+      return p.current ? 'Active · Onboarding' : 'Active'
+    case 'funding':
+      return 'Now Funding'
+    case 'complete':
+      return 'Complete'
+    default:
+      return 'Upcoming'
+  }
 }

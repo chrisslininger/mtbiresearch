@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
-import { PHASES } from '@/content/phases'
+import { PHASES, phaseStatusLabel } from '@/content/phases'
 
 /**
  * The four funded-phase cards. Whole card is a link into that phase's detail
- * page. The current phase is highlighted with a "Now Funding" pill; the rest
- * read "Upcoming". Recovered from the approved SD-preview design.
+ * page. The current phase is highlighted with its status pill ("Active ·
+ * Onboarding" while Phase 1 runs); the rest read "Upcoming".
  */
 export function PhaseCards() {
   return (
@@ -23,7 +23,7 @@ export function PhaseCards() {
           </div>
           <div className="pc-body">
             <span className={`pc-status ${p.current ? 'current' : 'up'}`}>
-              {p.current ? 'Now Funding' : 'Upcoming'}
+              {phaseStatusLabel(p)}
             </span>
             <div className="pc-t">{p.name}</div>
             <div className="pc-tag">{p.subtitle}</div>

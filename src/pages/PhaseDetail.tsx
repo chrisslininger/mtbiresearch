@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 import { PageBanner, LastUpdated } from '@/components/blocks'
-import { PHASES, phaseBySlug, type Phase } from '@/content/phases'
+import { PHASES, phaseBySlug, phaseStatusLabel, type Phase } from '@/content/phases'
 import NotFound from '@/pages/NotFound'
 import { usePhaseTotals, phaseTotal } from '@/lib/queries/funding'
 import { formatUsd } from '@/lib/utils'
@@ -68,11 +68,37 @@ export default function PhaseDetail() {
   return (
     <>
       <PageBanner
-        eyebrow={`Research Phase ${phase.number}${phase.current ? ' · Now Funding' : ''}`}
+        eyebrow={`Research Phase ${phase.number} · ${phaseStatusLabel(phase)}`}
         title={phase.name}
         tag={phase.subtitle}
         image={phase.image}
       />
+
+      {phase.status === 'active' && (
+        <section className="phase-active-band">
+          <div className="container phase-active-inner">
+            <div>
+              <p className="pab-eyebrow">
+                <span className="pab-dot" aria-hidden="true" /> Research Underway
+              </p>
+              <h2 className="pab-title">Phase {phase.number} has begun — we are onboarding participants now.</h2>
+              <p className="pab-text">
+                Veterans living with persistent symptoms after mild traumatic brain injury
+                can apply to take part. Care and evaluation are provided at no cost.
+              </p>
+              {phase.oversight && <p className="pab-irb">{phase.oversight}</p>}
+            </div>
+            <div className="pab-actions">
+              <Link to="/apply" className="btn">
+                Apply to Participate
+              </Link>
+              <Link to="/refer" className="btn btn-ghost-light">
+                Refer a Veteran
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="section-dark section-tight">
         <div className="container narrow">
@@ -96,6 +122,28 @@ export default function PhaseDetail() {
               <p key={i}>{para}</p>
             ))}
           </div>
+
+          {phase.timeline && phase.timeline.length > 0 && (
+            <div className="phase-timeline">
+              <h2>What happens during Phase {phase.number}</h2>
+              <ol className="agenda">
+                {phase.timeline.map((step, i) => (
+                  <li key={step.title}>
+                    <span className="an" aria-hidden="true">{i + 1}</span>
+                    <b>{step.title}</b>
+                    <span>{step.detail}</span>
+                  </li>
+                ))}
+              </ol>
+              {phase.status === 'active' && (
+                <div className="center mt-m">
+                  <Link to="/apply" className="btn">
+                    Apply to Participate in Phase {phase.number}
+                  </Link>
+                </div>
+              )}
+            </div>
+          )}
 
           <div className="p-delivers">
             <h2>{phase.deliversHeading}</h2>
@@ -130,7 +178,7 @@ export default function PhaseDetail() {
             </Link>
           </div>
           <div className="center mt-m">
-            <LastUpdated date="2026-09-16" />
+            <LastUpdated date="2026-09-28" />
           </div>
         </div>
       </section>

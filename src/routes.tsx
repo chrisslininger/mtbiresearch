@@ -20,6 +20,7 @@ import Events, { meta as eventsMeta } from '@/pages/Events'
 import EventDetail from '@/pages/EventDetail'
 import Blog, { meta as blogMeta } from '@/pages/Blog'
 import BlogPost from '@/pages/BlogPost'
+import Apply, { meta as applyMeta } from '@/pages/Apply'
 import Fund, { meta as fundMeta } from '@/pages/Fund'
 import Partnership, { meta as partnershipMeta } from '@/pages/Partnership'
 import Organizational, { meta as organizationalMeta } from '@/pages/Organizational'
@@ -46,7 +47,7 @@ const phaseRoutes: RouteEntry[] = PHASES.map((p) => ({
     path: p.path,
     title: `Phase ${p.number}: ${p.name} — mTBI Research`,
     description: `${p.subtitle}. ${p.cardDesc} Phase goal ${p.goal.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })}.`,
-    updatedAt: '2026-09-16',
+    updatedAt: '2026-09-28',
     priority: p.current ? 0.9 : 0.7,
     changefreq: 'weekly',
     ogImage: p.image,
@@ -96,6 +97,7 @@ export const routes: RouteEntry[] = [
   ...eventRoutes,
   { path: '/blog', Component: Blog, meta: blogMeta, prerender: true },
   ...postRoutes,
+  { path: '/apply', Component: Apply, meta: applyMeta, prerender: true },
   { path: '/support/financial-contribution', Component: Fund, meta: fundMeta, prerender: true },
   { path: '/support/research-partnership', Component: Partnership, meta: partnershipMeta, prerender: true },
   { path: '/support/organizational-support', Component: Organizational, meta: organizationalMeta, prerender: true },

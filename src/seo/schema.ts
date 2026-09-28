@@ -73,6 +73,7 @@ const CRUMB_NAMES: Record<string, string> = {
   '/blog': 'Blog',
   '/media': 'Media',
   '/refer': 'Refer a Participant',
+  '/apply': 'Apply to Participate',
   '/contact': 'Contact Us',
   '/support/financial-contribution': 'Financial Contribution',
   '/support/research-partnership': 'Research Partnership',

@@ -104,9 +104,11 @@ export default function StudyDesign() {
             <p>
               The study enrolls veterans, special operators, and athletes living with
               persistent symptoms after mild traumatic brain injury — people who have
-              often already tried everything the conventional system offers. Phase 1 is
-              a fifty-participant pilot drawn from a fixed cohort; open enrollment for
-              referred participants begins in Phase 2.
+              often already tried everything the conventional system offers. Phase 1, a
+              fifty-participant pilot conducted under the oversight of the Institutional
+              Review Board of Sherman College of Chiropractic, is now onboarding
+              veterans; you can <Link to="/apply">apply here</Link>. Later phases also
+              enroll special operators and athletes.
             </p>
 
             <h2>Design: three arms, one definitive comparison</h2>

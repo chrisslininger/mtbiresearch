@@ -22,8 +22,8 @@ const FAQS: Faq[] = [
     a: 'The full four-phase program is $23.5 million. It funds a 50-participant pilot, a 400-participant randomized trial with comprehensive diagnostic imaging and direct treatment across three study arms, and the analysis and publication needed to bring the findings to the Department of War, U.S. Special Operations Command (SOCOM), U.S. Central Command (CENTCOM), and the Department of Veterans Affairs (VA).',
   },
   {
-    q: 'Who can take part, and when does enrollment open?',
-    a: 'The study is for veterans, special operators, and athletes living with persistent symptoms after mild traumatic brain injury. Phase 1 is a small pilot with a fixed cohort; open enrollment for referred participants begins in Phase 2.',
+    q: 'Who can take part, and how do I apply?',
+    a: 'Phase 1 is now onboarding veterans living with persistent symptoms after mild traumatic brain injury; veterans who served in Special Operations are prioritized for the first cohort. Apply at mtbiresearch.com/apply. Later phases also enroll special operators and athletes. Phase 1 is conducted under the oversight of the Institutional Review Board of Sherman College of Chiropractic.',
   },
 ]
 
@@ -32,7 +32,7 @@ export const meta: PageMeta = {
   title: SITE.title,
   description:
     'A clinical study tracing persistent mild traumatic brain injury symptoms to the craniocervical junction — evidence built to change how the Department of War and VA treat mTBI.',
-  updatedAt: '2026-09-16',
+  updatedAt: '2026-09-28',
   priority: 1.0,
   changefreq: 'weekly',
   ogImage: '/images/brand/hero.jpg',
@@ -56,6 +56,35 @@ export default function Home() {
           <div>
             <Link to="/support/financial-contribution" className="btn">
               Support the Research
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Phase 1 announcement */}
+      <section className="announce" aria-labelledby="announce-title">
+        <div className="container announce-inner">
+          <div className="announce-copy">
+            <p className="announce-eyebrow">
+              <span className="pab-dot" aria-hidden="true" /> Phase 1 Research Has Begun
+            </p>
+            <h2 id="announce-title" className="announce-title">
+              We are now onboarding participants for the Phase 1 pilot.
+            </h2>
+            <p className="announce-text">
+              Veterans living with persistent symptoms after mild traumatic brain injury
+              can apply to take part — at no cost. Veterans who served in Special
+              Operations are prioritized for the first cohort. Conducted under the
+              oversight of the Institutional Review Board of Sherman College of
+              Chiropractic.
+            </p>
+          </div>
+          <div className="announce-actions">
+            <Link to="/apply" className="btn">
+              Apply to Participate
+            </Link>
+            <Link to="/research-phases/ccj-feasibility-pilot" className="announce-link">
+              About Phase 1 →
             </Link>
           </div>
         </div>
@@ -177,9 +206,10 @@ export default function Home() {
             This study does not end with data collection. It ends with policy change —
             new Department of War and VA standards for how mTBI is screened, diagnosed,
             and treated — and it gets there in four funded research phases. Each one is
-            a complete, publishable body of work that de-risks the next. We are
-            currently raising funds for Phase 1. Explore each phase to see its goal, its
-            impact, and where the funding stands today.
+            a complete, publishable body of work that de-risks the next. Phase 1 is
+            underway and onboarding participants now, while we continue to raise the
+            funds that complete it. Explore each phase to see its goal, its impact, and
+            where the funding stands today.
           </p>
           <div className="mt-l">
             <PhaseCards />
@@ -265,7 +295,7 @@ export default function Home() {
               <p>
                 Do you know a veteran, a special operator, or an athlete who has been
                 living with symptoms that no treatment has resolved? Refer them to this
-                study. Open enrollment for referred participants begins in Phase 2.
+                study — Phase 1 is onboarding veterans now.
               </p>
               <p className="emph">They have been waiting long enough.</p>
               <Link to="/refer" className="btn">

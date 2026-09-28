@@ -54,7 +54,8 @@ export default function ResearchPhases() {
             cost rather than a single large commitment. Phase 1 is a standalone
             50-participant pilot; Phases 2 and 3 together form the 400-participant
             randomized trial. Click any phase to see its full detail, budget, and
-            funding progress. We are currently raising funds for Phase 1.
+            funding progress. Phase 1 is underway and onboarding participants now,
+            while fundraising continues to complete it.
           </p>
 
           <div className="mt-l">

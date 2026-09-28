@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import type { PageMeta } from '@/seo/types'
 import { PageBanner, SectionHeading } from '@/components/blocks'
 import { InquiryForm } from '@/components/InquiryForm'
@@ -11,11 +12,11 @@ const FAQS: Faq[] = [
   },
   {
     q: 'When does enrollment open?',
-    a: 'Phase 1 is a small pilot drawn from a fixed cohort. Open enrollment for referred participants begins in Phase 2. Referrals submitted now are held and contacted as Phase 2 enrollment begins.',
+    a: 'Phase 1 is onboarding veterans now. The person you refer can apply directly at mtbiresearch.com/apply, or the research team will reach out to them after reviewing your referral. Later phases expand enrollment to special operators and athletes.',
   },
   {
     q: 'What happens after I submit a referral?',
-    a: 'The research team reviews every referral personally. As Phase 2 enrollment opens, the team reaches out to the person you referred to explain the study and confirm eligibility.',
+    a: 'The research team reviews every referral personally and reaches out to the person you referred to explain the study, answer questions, and confirm eligibility. Phase 1 is conducted under the oversight of the Institutional Review Board of Sherman College of Chiropractic.',
   },
 ]
 
@@ -23,8 +24,8 @@ export const meta: PageMeta = {
   path: '/refer',
   title: 'Refer a Participant — mTBI Keystone Research Study',
   description:
-    'Know a veteran, operator, or athlete with unresolved brain-injury symptoms? Refer them to the mTBI Keystone Research Study. Open enrollment begins in Phase 2.',
-  updatedAt: '2026-09-16',
+    'Know a veteran, operator, or athlete with unresolved brain-injury symptoms? Refer them to the mTBI Keystone Research Study — Phase 1 is onboarding veterans now.',
+  updatedAt: '2026-09-28',
   priority: 0.8,
   changefreq: 'monthly',
   schema: [faqNode(FAQS)],
@@ -46,9 +47,10 @@ export default function Refer() {
               Do you know a veteran, a special operator, or an athlete who has been
               living with symptoms that no treatment has resolved — the headaches, the
               fog, the sleeplessness, the dizziness? This study exists for them. Refer
-              them here. Phase 1 is a small pilot with a fixed cohort; as open
-              enrollment begins in Phase 2, the research team will reach out with next
-              steps.
+              them here — or send them straight to the{' '}
+              <Link to="/apply">Phase 1 application</Link>. Phase 1 is onboarding
+              veterans now, and the research team will reach out to every referral with
+              next steps.
             </p>
           </div>
           <div className="mt-l">
@@ -65,7 +67,7 @@ export default function Refer() {
                 },
               ]}
               submitLabel="Submit Referral"
-              successMessage="Thank you. The referral has been received — the research team will reach out as Phase 2 enrollment opens."
+              successMessage="Thank you. The referral has been received — the research team will reach out to the person you referred with next steps."
             />
           </div>
         </div>
