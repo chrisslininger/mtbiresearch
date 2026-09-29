@@ -1,8 +1,8 @@
 import { useState, type FormEvent } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { SITE } from '@/content/site'
 import { PillSelect, YesNo } from '@/components/PillSelect'
 import { submitApplication, type ApplicationInput } from '@/lib/queries/applications'
-import { SITE } from '@/content/site'
 import {
   AGREEMENTS,
   BLAST_EXPOSURE,
@@ -17,7 +17,7 @@ import {
   SYMPTOMS,
 } from '@/content/intake'
 
-type Status = 'idle' | 'sending' | 'done' | 'error'
+type Status = 'idle' | 'sending' | 'error'
 
 interface State {
   fullName: string
@@ -124,6 +124,7 @@ function validate(s: State): { errors: Record<string, string>; first: string | n
 }
 
 export function IntakeForm() {
+  const navigate = useNavigate()
   const [s, setS] = useState<State>(INITIAL)
   const [status, setStatus] = useState<Status>('idle')
   const [errors, setErrors] = useState<Record<string, string>>({})
@@ -135,7 +136,8 @@ export function IntakeForm() {
     e.preventDefault()
     const form = e.currentTarget
     if (new FormData(form).get('website')) {
-      setStatus('done')
+      // Honeypot filled — bots get the same destination, nothing is stored.
+      navigate('/apply/thank-you')
       return
     }
     const { errors: errs, first } = validate(s)
@@ -184,37 +186,17 @@ export function IntakeForm() {
     }
     const result = await submitApplication(input)
     if (result.ok) {
-      setStatus('done')
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      const contact = s.preferredContact[0]
+      navigate('/apply/thank-you', {
+        state: {
+          firstName: s.fullName.trim().split(/\s+/)[0] || '',
+          contact: contact === 'text' || contact === 'phone' ? contact : 'email',
+        },
+      })
     } else {
       setFailReason(result.reason)
       setStatus('error')
     }
-  }
-
-  if (status === 'done') {
-    return (
-      <div className="intake-done" role="status">
-        <p className="eyebrow">Application Received</p>
-        <h2 className="display-sm">Thank you, {s.fullName.split(' ')[0] || 'and welcome'}.</h2>
-        <p className="lead">
-          Your application for the Phase 1 pilot has been received. The research team
-          personally reviews every application and will reach out by{' '}
-          {s.preferredContact[0] === 'text' ? 'text' : s.preferredContact[0] === 'phone' ? 'phone' : 'email'}{' '}
-          with next steps.
-        </p>
-        <p>
-          If you are selected, the first step is an initial consultation and evaluation
-          at {CLINIC.name} in {CLINIC.city}. Questions in the meantime? Email{' '}
-          <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
-        </p>
-        <div className="mt-m">
-          <Link to="/" className="btn">
-            Return to Homepage
-          </Link>
-        </div>
-      </div>
-    )
   }
 
   const Err = ({ k }: { k: string }) => (errors[k] ? <p className="field-error" role="alert">{errors[k]}</p> : null)

@@ -21,6 +21,7 @@ import EventDetail from '@/pages/EventDetail'
 import Blog, { meta as blogMeta } from '@/pages/Blog'
 import BlogPost from '@/pages/BlogPost'
 import Apply, { meta as applyMeta } from '@/pages/Apply'
+import ApplyThankYou, { meta as applyThankYouMeta } from '@/pages/ApplyThankYou'
 import Fund, { meta as fundMeta } from '@/pages/Fund'
 import Partnership, { meta as partnershipMeta } from '@/pages/Partnership'
 import Organizational, { meta as organizationalMeta } from '@/pages/Organizational'
@@ -98,6 +99,7 @@ export const routes: RouteEntry[] = [
   { path: '/blog', Component: Blog, meta: blogMeta, prerender: true },
   ...postRoutes,
   { path: '/apply', Component: Apply, meta: applyMeta, prerender: true },
+  { path: '/apply/thank-you', Component: ApplyThankYou, meta: applyThankYouMeta, prerender: true },
   { path: '/support/financial-contribution', Component: Fund, meta: fundMeta, prerender: true },
   { path: '/support/research-partnership', Component: Partnership, meta: partnershipMeta, prerender: true },
   { path: '/support/organizational-support', Component: Organizational, meta: organizationalMeta, prerender: true },
