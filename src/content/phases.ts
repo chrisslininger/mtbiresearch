@@ -20,6 +20,38 @@ export interface PhaseSpec {
 
 export type PhaseStatus = 'active' | 'funding' | 'upcoming' | 'complete'
 
+export interface ParticipantContent {
+  /** Banner title override, e.g. "mTBI Pilot Program". */
+  bannerTitle: string
+  bannerTag: string
+  bannerImage?: string
+  bannerImageMobile?: string
+  bannerImagePosition?: string
+  /** Section heading + opening statement. */
+  eyebrow: string
+  headline: string
+  intro: string
+  /** Key facts strip at the top (participants first). */
+  keyFacts: Array<{ value: string; label: string }>
+  /** Evidence stats with a sources line. */
+  stats: Array<{ value: string; label: string }>
+  statsSources: string
+  /** Three short columns. */
+  pillars: Array<{ title: string; body: string }>
+  /** Who can apply. */
+  eligibilityHeading: string
+  eligibility: string[]
+  /** Conducted-by / oversight statement. */
+  conductedBy: string
+  /** Funding section (bottom). */
+  fundingHeadline: string
+  fundingIntro: string
+  whereDollarsGo: Array<{ title: string; detail: string }>
+  overheadNote: string
+  /** Principal investigator card. */
+  investigator: { name: string; title: string; bio: string }
+}
+
 export interface Phase {
   number: number
   slug: string
@@ -41,6 +73,12 @@ export interface Phase {
   oversight?: string
   /** "What happens during this phase" — shown on the phase page as a numbered walk-through. */
   timeline?: Array<{ title: string; detail: string }>
+  /**
+   * Participant-facing page content (the one-pager language). When present,
+   * the phase page is laid out for participants first: who this is for, what
+   * the injury is, what happens, who can apply — with funding moved to the end.
+   */
+  participant?: ParticipantContent
   /** Short name for the milestone stepper. */
   stepperName: string
   /** Card thumbnail image. */
@@ -53,6 +91,10 @@ export interface Phase {
   costPerParticipant: number | null
   /** Target number of participants this phase treats. */
   participantTarget: number | null
+  /** Value of care/facilities donated in kind toward this phase (shown as its own bar segment). */
+  inKindUsd?: number
+  /** Participants already covered by in-kind contributions. */
+  inKindParticipants?: number
   specs: PhaseSpec[]
   body: string[]
   deliversHeading: string
@@ -107,13 +149,85 @@ export const PHASES: Phase[] = [
           'The before-and-after data across all fifty participants is analyzed and published as the pilot evidence that justifies the full randomized trial.',
       },
     ],
+    participant: {
+      bannerTitle: 'mTBI Pilot Program',
+      bannerTag: 'Mild traumatic brain injury · Phase 1 of the mTBI Research Study',
+      bannerImage: '/images/phases/phase-1-banner.jpg',
+      bannerImageMobile: '/images/phases/phase-1-banner-mobile.jpg',
+      bannerImagePosition: 'center 28%',
+      eyebrow: 'Phase 1 · The mTBI Research Study',
+      headline: 'Revealing the Unseen Injury',
+      intro:
+        'For decades, a service member with a brain injury has been examined in one place: the brain. But every force that reaches the brain — the blast, the fall, the whiplash, the hard impact — passes first through the neck. And at the very top of the neck, where the skull meets the spine, sits a small and delicate structure called the craniocervical junction. It absorbs the same violence the brain does, with a fraction of the protection, and it is almost never examined. We believe that for many who never recovered, the injury was there all along. No one was looking. This study is the first to look — and you can be part of it.',
+      keyFacts: [
+        { value: '50', label: 'Veterans in the pilot' },
+        { value: '8 weeks', label: 'Of care · 2–3 visits per week' },
+        { value: '$0', label: 'Cost to you · no compensation' },
+        { value: 'St. Pete', label: 'Cerebral Chiropractic Center, FL' },
+      ],
+      stats: [
+        { value: '479K', label: 'service members diagnosed with TBI since 2000 — over 80% mild' },
+        { value: '17.6/day', label: 'veterans lost to suicide — twice the civilian rate' },
+        { value: '~2×', label: 'suicide risk for veterans with a TBI history' },
+        { value: '90%', label: 'of patients with lasting symptoms show neck involvement' },
+      ],
+      statsSources:
+        'Sources: DHA TBI Center of Excellence; VA Suicide Prevention Annual Report (2024); Cheever et al., Sports Med (2021).',
+      pillars: [
+        {
+          title: 'Told it was permanent',
+          body:
+            'Many who served come home with headaches, fog, dizziness, and nights that never bring rest, from an injury no scan can find. They are told the damage is permanent, or that it lives only in their minds. They cycle through medications, therapies, and specialists without relief. A review of more than 15,000 studies found no early treatment clearly tied to a better outcome. The current model manages symptoms. It has not offered these men and women a way back.',
+        },
+        {
+          title: 'The root, not the symptom',
+          body:
+            'When the craniocervical junction is destabilized, it can choke the flow of blood to the brain, block the fluid that clears its waste, strain the brainstem, and hold the whole nervous system in a state of alarm. What follows is remarkably consistent: migraines, vertigo, trouble with the eyes, a mind that will not clear, and a fight-or-flight state so persistent it is often mistaken for PTSD. Quiet the symptoms and they return. Correct the source and recovery can last.',
+        },
+        {
+          title: 'Why veterans first',
+          body:
+            'Those who served carry the heaviest exposure to blast, impact, and whiplash of anyone alive, and the highest cost of an answer that never comes. Fifty veterans — with those who served in Special Operations prioritized — will be the first to be examined, corrected, and measured. And because this same injury reaches the football field, the highway, and the workplace, what we learn for them opens a door for millions who never wore the uniform.',
+        },
+      ],
+      eligibilityHeading: 'Who can apply',
+      eligibility: [
+        'Any veteran of the U.S. Armed Forces living with symptoms that have persisted after a mild traumatic brain injury — headaches, dizziness, brain fog, sleep disturbance, light or sound sensitivity, anxiety, and the like.',
+        'Veterans who served in Special Operations are prioritized for the first cohort, because their exposure to blast and impact is the heaviest.',
+        'You must be able to attend care at Cerebral Chiropractic Center in St. Petersburg, Florida, two to three times per week for eight weeks, plus an initial and a final evaluation.',
+        'Care, evaluations, and imaging are provided at no cost. There is no compensation for taking part, and applying does not guarantee selection.',
+      ],
+      conductedBy:
+        'Conducted through the Craniocervical Institute, a training and research organization for upper-cervical specialists who analyze, diagnose, and correct structural issues in the upper neck that affect the central nervous system and brain health. IRB oversight by Sherman College of Chiropractic.',
+      fundingHeadline: 'Give a veteran the answer they never got',
+      fundingIntro:
+        'Behind every number on this page is a person who was told to accept a smaller life. This study exists to find out whether that was ever true, and to act on the answer. Phase 1 is a complete and defined mission: fifty veterans treated, every outcome measured, and one peer-reviewed publication. It can be underwritten in full or in part, honored in the published record, and stewarded under independent accounting. What you fund is not a report on a shelf. It is a genuine chance at recovery for those who gave the most, and a lasting change in how a grateful nation cares for them.',
+      whereDollarsGo: [
+        { title: 'Direct care for fifty veterans', detail: 'the full course of precise, image-guided craniocervical treatment, delivered to every participant' },
+        { title: 'Clinical & neurological assessment', detail: 'consultations, examinations, and objective testing at every stage of each veteran’s care' },
+        { title: 'Research data system', detail: 'the platform that captures each veteran’s outcomes and carries every future phase' },
+        { title: 'Research leadership', detail: 'the investigators who direct the study and analyze what it finds' },
+        { title: 'IRB ethics & regulatory oversight', detail: 'the human-subjects protections that safeguard every participant' },
+        { title: 'Independent accounting & publication', detail: 'clean stewardship of every dollar, and open sharing of the results' },
+      ],
+      overheadNote:
+        'Overhead is held deliberately low, and clinical facilities are contributed in kind, so the maximum possible share of every gift reaches the veterans and the science.',
+      investigator: {
+        name: 'Dr. Chris Slininger, DC, DCCJP',
+        title: 'Principal Investigator · U.S. Army Veteran',
+        bio:
+          'Dr. Slininger knows this injury from both sides of the clinical picture. A U.S. Army veteran who sustained at least ten concussions and mild traumatic brain injuries across athletics and military service, he left the military with serious cognitive decline of his own and recovered through the very care this study investigates. He is a craniocervical specialist, founder of Cerebral, a specialist clinic in St. Petersburg, Florida, and Executive Director of the Craniocervical Institute, and has served on the Board of Directors of the International Chiropractic Association’s Council on Upper Cervical Care. He trains doctors nationally and speaks regularly on brain health, enhanced cognitive performance, and complex neurological conditions. He authored the study’s scientific rationale, designed the clinical protocol, and personally directs each participant’s course of care, the analysis, and the publication.',
+      },
+    },
     stepperName: 'CCJ Pilot Study',
     image: '/images/phases/phase-1.jpg',
     ogImage: '/images/brand/og-pilot-program.jpg',
     cardDesc:
       'Fifty participants, precise upper-cervical care, and the first published evidence that the craniocervical junction (CCJ) model works.',
-    costPerParticipant: 3_000,
+    costPerParticipant: null,
     participantTarget: 50,
+    inKindUsd: 40_000,
+    inKindParticipants: 10,
     specs: [
       { label: 'Participants', value: '50 (40 funded, 10 in-kind)' },
       { label: 'Design', value: 'Single-arm, open-label (every participant receives care)' },

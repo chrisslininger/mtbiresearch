@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 
 /** Dark page banner used at the top of interior pages. */
 export function PageBanner({
@@ -6,19 +6,30 @@ export function PageBanner({
   title,
   tag,
   image,
+  imageMobile,
+  imagePosition,
+  tall,
 }: {
   eyebrow?: string
   title: string
   tag?: string
   image?: string
+  /** Optional portrait crop swapped in under 720px so faces stay in frame. */
+  imageMobile?: string
+  /** background-position for the desktop image, e.g. "center 20%". */
+  imagePosition?: string
+  /** Taller banner for feature pages. */
+  tall?: boolean
 }) {
   const style = image
-    ? {
-        backgroundImage: `linear-gradient(oklch(0.20 0.009 255 / .72), oklch(0.20 0.009 255 / .86)), url('${image}')`,
-      }
+    ? ({
+        '--banner-img': `url('${image}')`,
+        '--banner-img-mobile': `url('${imageMobile ?? image}')`,
+        '--banner-pos': imagePosition ?? 'center',
+      } as CSSProperties)
     : undefined
   return (
-    <section className={`page-banner${image ? ' has-bg' : ''}`} style={style}>
+    <section className={`page-banner${image ? ' has-bg' : ''}${tall ? ' page-banner-tall' : ''}`} style={style}>
       <div className="container">
         {eyebrow && <p className="eyebrow">{eyebrow}</p>}
         <h1 className="display">{title}</h1>
