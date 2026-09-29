@@ -45,6 +45,8 @@ export interface Phase {
   stepperName: string
   /** Card thumbnail image. */
   image: string
+  /** Optional 1200×630 social card; falls back to `image`. */
+  ogImage?: string
   /** Short description for the card. */
   cardDesc: string
   /** Direct-care cost to carry one participant through this phase (provisional). */
@@ -107,6 +109,7 @@ export const PHASES: Phase[] = [
     ],
     stepperName: 'CCJ Pilot Study',
     image: '/images/phases/phase-1.jpg',
+    ogImage: '/images/brand/og-pilot-program.jpg',
     cardDesc:
       'Fifty participants, precise upper-cervical care, and the first published evidence that the craniocervical junction (CCJ) model works.',
     costPerParticipant: 3_000,

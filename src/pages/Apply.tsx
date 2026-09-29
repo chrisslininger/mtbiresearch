@@ -6,13 +6,13 @@ import { CLINIC, IRB_STATEMENT } from '@/content/intake'
 
 export const meta: PageMeta = {
   path: '/apply',
-  title: 'Apply for the Phase 1 Pilot — mTBI Research',
+  title: 'mTBI Pilot Program',
   description:
     'Phase 1 of the mTBI Keystone Research Study is now onboarding participants. Veterans with persistent mTBI symptoms can apply to the pilot at no cost.',
-  updatedAt: '2026-09-28',
+  updatedAt: '2026-09-29',
   priority: 0.9,
   changefreq: 'weekly',
-  ogImage: '/images/phases/phase-1.jpg',
+  ogImage: '/images/brand/og-pilot-program.jpg',
 }
 
 export default function Apply() {

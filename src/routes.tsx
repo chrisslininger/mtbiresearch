@@ -51,7 +51,7 @@ const phaseRoutes: RouteEntry[] = PHASES.map((p) => ({
     updatedAt: '2026-09-28',
     priority: p.current ? 0.9 : 0.7,
     changefreq: 'weekly',
-    ogImage: p.image,
+    ogImage: p.ogImage ?? p.image,
   },
 }))
 
