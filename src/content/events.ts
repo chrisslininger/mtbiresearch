@@ -62,10 +62,10 @@ export const EVENTS: EventItem[] = [
     cardDesc:
       'Dr. Chris Slininger & Navy SEAL Cmdr. Dan O’Shea (Ret.) on the research reshaping how we understand concussion, recovery, and cognitive performance.',
     invitationOnly: true,
-    startISO: '2026-10-13T18:00:00-04:00',
-    endISO: '2026-10-13T20:30:00-04:00',
-    dateLong: 'Tuesday, October 13, 2026',
-    dateShort: 'Oct 13, 2026',
+    startISO: '2026-10-14T18:00:00-04:00',
+    endISO: '2026-10-14T20:30:00-04:00',
+    dateLong: 'Wednesday, October 14, 2026',
+    dateShort: 'Oct 14, 2026',
     month: 'Oct',
     day: '13',
     year: '2026',
@@ -141,7 +141,7 @@ export const EVENTS: EventItem[] = [
       },
     ],
     networkingNote: 'A networking reception follows the talk, running until 8:30 PM.',
-    updatedAt: '2026-09-16',
+    updatedAt: '2026-10-02',
   },
 ]
 
