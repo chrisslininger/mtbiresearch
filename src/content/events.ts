@@ -30,10 +30,10 @@ export interface EventItem {
   startISO: string
   endISO: string
   /** Display strings. */
-  dateLong: string // "Tuesday, October 13, 2026"
-  dateShort: string // "Oct 13, 2026"
+  dateLong: string // "Wednesday, October 14, 2026"
+  dateShort: string // "Oct 14, 2026"
   month: string // "Oct"
-  day: string // "13"
+  day: string // "14"
   year: string // "2026"
   timeLine: string // "6:00–7:00 PM · networking to 8:30"
   timeDetail: string // "6:00–7:00 PM talk\nNetworking 7:00–8:30 PM"
@@ -67,7 +67,7 @@ export const EVENTS: EventItem[] = [
     dateLong: 'Wednesday, October 14, 2026',
     dateShort: 'Oct 14, 2026',
     month: 'Oct',
-    day: '13',
+    day: '14',
     year: '2026',
     timeLine: '6:00–7:00 PM · networking to 8:30',
     timeDetail: '6:00–7:00 PM talk · Networking 7:00–8:30 PM',
