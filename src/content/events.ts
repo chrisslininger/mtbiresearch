@@ -53,103 +53,18 @@ export interface EventItem {
   updatedAt: string
 }
 
-export const EVENTS: EventItem[] = [
-  {
-    slug: 'the-next-frontier-brain-health',
-    path: '/events/the-next-frontier-brain-health',
-    title: 'The Next Frontier in Brain Health & Warfighter Recovery',
-    tagline: 'An evening with Dr. Chris Slininger & Navy SEAL Cmdr. Dan O’Shea (Ret.)',
-    cardDesc:
-      'Dr. Chris Slininger & Navy SEAL Cmdr. Dan O’Shea (Ret.) on the research reshaping how we understand concussion, recovery, and cognitive performance.',
-    invitationOnly: true,
-    startISO: '2026-10-14T18:00:00-04:00',
-    endISO: '2026-10-14T20:30:00-04:00',
-    dateLong: 'Wednesday, October 14, 2026',
-    dateShort: 'Oct 14, 2026',
-    month: 'Oct',
-    day: '14',
-    year: '2026',
-    timeLine: '6:00–7:00 PM · networking to 8:30',
-    timeDetail: '6:00–7:00 PM talk · Networking 7:00–8:30 PM',
-    venueName: 'The Stovall House · Hunt Room',
-    venueStreet: '4621 Bayshore Boulevard',
-    venueCityLine: 'Tampa, FL 33611',
-    image: '/images/events/speakers.jpg',
-    socialImage: '/images/events/stovall-social.jpg',
-    body: [
-      'What if some of the lasting effects of brain injury are being driven by something medicine has largely overlooked?',
-      'For years, the operators who serve at the highest levels — and the athletes who absorb a lifetime of impacts — have carried home symptoms that never show up on a standard scan. The headaches that outlast every treatment. The fog, the dizziness, the sleeplessness, the anxiety that never fully settles. Too often they are told the damage is permanent, or that the problem lives only in their minds. A growing body of research suggests a different possibility: that a significant share of these symptoms may not come from the brain tissue at all, but from an injury just beneath the skull that has rarely been looked for.',
-      'Join Dr. Chris Slininger — Principal Investigator of a large-scale mild traumatic brain injury study — and retired Navy SEAL Commander Dan O’Shea for a candid conversation about the science that could reshape how we understand concussion, cognitive performance, and recovery. Dr. Slininger’s research examines the craniocervical junction, where the skull meets the upper cervical spine, and its influence on the brainstem, cerebral blood flow, and the movement of cerebrospinal fluid — the systems that govern how the brain regulates itself, clears waste, and heals. O’Shea, a former SEAL Team Three task unit commander, has become one of the most respected advocates for bringing this research and care to the special operations community, and brings the operator’s perspective on what these invisible injuries truly cost.',
-      'Together, they’ll trace the effort to make invisible brain injuries measurable — with the imaging and objective testing that can finally see them — what the findings could mean for symptoms including brain fog, migraines, dizziness, PTSD, and cognitive decline, and where this rapidly evolving science may lead for warfighters, athletes, and anyone living with the lasting effects of head trauma.',
-    ],
-    agenda: [
-      {
-        title: 'The injury medicine has overlooked',
-        detail:
-          'Why persistent post-concussive symptoms so often outlast standard care — and why a conventional brain scan can read “normal” while a person is still profoundly symptomatic.',
-      },
-      {
-        title: 'The craniocervical junction',
-        detail:
-          'The neurological, vascular, and fluid-dynamic crossroads between the body and the brain — and what happens when a blast or impact knocks it out of alignment.',
-      },
-      {
-        title: 'From blast and impact to symptoms',
-        detail:
-          'How disruption at the base of the skull may restrict blood flow, slow the brain’s waste-clearance, and strain the brainstem — driving brain fog, migraines, dizziness, sleep problems, and changes in mood and cognition.',
-      },
-      {
-        title: 'Making the invisible measurable',
-        detail:
-          'The advanced imaging and objective testing — MRI, single-photon emission CT (SPECT), quantitative EEG (qEEG), and cone beam CT (CBCT) — the study uses to turn “invisible” injuries into data that medicine and policy cannot ignore.',
-      },
-      {
-        title: 'The warfighter’s fight',
-        detail:
-          'Why the special operations community sits at the center of this work, Commander O’Shea’s push to bring it to those who served, and what it could mean for the Department of Veterans Affairs (VA) and the Department of War.',
-      },
-      {
-        title: 'Where the science goes next',
-        detail:
-          'The road from this research to a real shift in the standard of care — and how supporters, clinicians, and advocates can be part of it.',
-      },
-    ],
-    topics: [
-      'Concussion & mTBI',
-      'Brain fog',
-      'Migraines',
-      'Dizziness',
-      'Sleep disruption',
-      'PTSD',
-      'Cognitive decline',
-      'Cerebral blood flow',
-    ],
-    speakers: [
-      {
-        name: 'Dr. Chris Slininger',
-        role: 'Principal Investigator · Army Veteran',
-        bio: 'Principal Investigator of the mTBI Keystone Research Study, examining the craniocervical junction as a root cause of persistent post-concussive symptoms. A U.S. Army veteran who lived the injury and the recovery this research investigates.',
-        photo: '/images/events/slininger.jpg',
-        initials: 'CS',
-      },
-      {
-        name: 'Cmdr. Dan O’Shea, USN (Ret.)',
-        role: 'Former Navy SEAL · Task Unit Commander',
-        bio: 'A former SEAL Team Three task unit commander and a leading advocate for bringing root-cause brain-injury research and care to the special operations community.',
-        photo: '/images/events/oshea.jpg',
-        initials: 'DO',
-      },
-    ],
-    networkingNote: 'A networking reception follows the talk, running until 8:30 PM.',
-    updatedAt: '2026-10-02',
-  },
-]
+/**
+ * Add an event object here to publish it. The Events page, homepage card,
+ * event detail route, sitemap and structured data all read from this list.
+ * Past events drop off the listings automatically (see upcomingEvents).
+ */
+export const EVENTS: EventItem[] = []
 
 export function eventBySlug(slug: string): EventItem | undefined {
   return EVENTS.find((e) => e.slug === slug)
 }
 
-/** Upcoming events, soonest first (all events are upcoming for now). */
+/** Upcoming events, soonest first. */
 export function upcomingEvents(): EventItem[] {
   const now = Date.now()
   return EVENTS.filter((e) => new Date(e.endISO).getTime() >= now).sort(

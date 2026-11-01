@@ -11,7 +11,6 @@ export const meta: PageMeta = {
   updatedAt: '2026-09-16',
   priority: 0.8,
   changefreq: 'weekly',
-  ogImage: '/images/events/speakers.jpg',
 }
 
 export default function Events() {
